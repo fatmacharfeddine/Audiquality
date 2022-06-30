@@ -1,0 +1,10 @@
+<?xml version="1.0"?><svg width="744.09448" height="1052.3622" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <title>orange_arrow</title>
+
+ <g>
+  <title>Layer 1</title>
+  <path fill="#ff7f00" fill-rule="evenodd" stroke="#000000" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="4" id="rect899" d="m356.292542,141.845963l31.291229,182.453629l-321.240021,-38.472778l0,243.051605l321.240021,-38.472748l-31.291229,171.159027l313.644958,-254.212067l-313.644958,-265.506668z"/>
+  <use transform="matrix(0.976789 0 0 0.976903 1.54502 3.27817)" id="svg_1" y="10" xlink:href="#rect899" x="10" width="744.09448" height="1052.3622"/>
+  <use y="10" xlink:href="#rect899" x="10" width="744.09448" id="use1503" height="1052.3622"/>
+ </g>
+</svg>

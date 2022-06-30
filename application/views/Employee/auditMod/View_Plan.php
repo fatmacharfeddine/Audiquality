@@ -1,0 +1,196 @@
+<style>
+    .form_add_photo {
+        height: 50px;
+    }
+</style>
+
+<body>
+
+
+    <div class="page-wrapper" style="min-height: 314px;">
+        <div class="content">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4 class="page-title">Intern Audit</h4>
+                </div>
+            </div>
+            <div class="row filter-row">
+                <div class="col-sm-6 col-md-3">
+
+                </div>
+                <div class="col-sm-6 col-md-3">
+
+                </div>
+                <div class="col-sm-6 col-md-3">
+
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <a href="<?php echo base_url(); ?>Employee_Account/Form_add_audit?ID_audit_plan=<?php echo $ID_audit_plan ?>" class="btn btn-success btn-block"> + Add </a>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped custom-table mb-0">
+                            <thead>
+                                <tr>
+                                    <th>processus</th>
+                                    <th>January</th>
+                                    <th>February</th>
+                                    <th>March</th>
+                                    <th>April</th>
+                                    <th>Mai</th>
+                                    <th>June</th>
+                                    <th>July</th>
+                                    <th>August</th>
+                                    <th>September</th>
+                                    <th>October</th>
+                                    <th>November</th>
+                                    <th>December</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php if (isset($processus)) {
+                                    foreach ($processus_list as $row) {
+                                        //    $date = date_create($row['Create_date_audit_plan']);
+                                        //    echo ($date->format('m'));
+                                ?>
+
+                                        <tr>
+                                            <td>
+                                                <?php echo $row['Title_processus']; ?>
+                                            </td>
+                                            <!-------------Month---------->
+                                            <?php $month_array = array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"); ?>
+                                            <?php
+                                            if (isset($processus)) {
+
+                                                for ($i = 0; $i <= 11; $i++) { ?>
+
+                                                    <td>
+                                                        <?php foreach ($processus as $row2) {
+                                                            $date = date_create($row2['planned_date_audit']);
+
+                                                            if (($date->format('m') == $month_array[$i]) && ($row['ID_processus'] == $row2['ID_processus'])) {
+                                                        ?>
+                                                                <a href="<?php echo base_url() ?>/Employee_Account/View_Steps?ID_audit=<?php echo $row2['ID_audit'] ?>"><!--&planned_date_audit=<?php echo $row['planned_date_audit'] ?>---->
+
+
+                                                                    <p style="background-color: #ffc800;    padding: 10px;"> <?php echo $date->format('d') . ' th' ?></p>
+                                                                </a>
+                                                            <?php } else {
+                                                            ?>
+
+                                                                <?php //echo ($month_array[$i]) 
+                                                                ?>
+
+                                                        <?php
+
+
+                                                            }
+                                                        }
+                                                        ?>
+                                                    </td>
+                                            <?php  }
+                                            } ?>
+
+                                            <!------------End Month----------->
+
+
+                                        </tr>
+                                <?php             }
+                                } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--?php include "/../Footer.php"; ?-->
+
+    <script>
+        $(document).ready(function() {
+
+
+
+
+            $("#btn_add").click(function() {
+                swal({
+                    title: 'Save',
+                    text: "Are you sure?",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    cancelButtonText: 'Cancel',
+
+                    confirmButtonText: 'Yes'
+                }).then((result) => {
+
+                    if (result.value) {
+                        //$("#action").val(1);
+
+
+                        $('form#audits').submit();
+                        //	swal('its OK '+result.value);
+                    } else {
+                        swal("This operation is canceled");
+                        return false;
+                    }
+                });
+            });
+
+        });
+    </script>
+    <script>
+        function populate(ID_processus, post) {
+
+
+
+            var jArray = <?php echo json_encode($phpArray); ?>;
+            var jArrayname = <?php echo json_encode($phpArrayname); ?>;
+
+
+
+
+            var ID_processus = document.getElementById(ID_processus);
+            var post = document.getElementById(post);
+            post.innerHTML = "";
+            for (var i = 0; i < jArray.length; i++) {
+                if (jArray[i] == ID_processus.value) {
+                    var name = jArrayname[i];
+
+                    var optionArray = ["name|".name];
+                }
+                alert(jArrayname[i]);
+            }
+
+            for (var option in optionArray) {
+                var pair = optionArray[option].split("|");
+                var newOption = document.createElement("option");
+                newOption.value = pair[0];
+                newOption.innerHTML = pair[1];
+                post.options.add(newOption);
+            }
+        }
+    </script>
+    <script>
+        function triggerClick() {
+            document.querySelector('#File_identification').click();
+        }
+
+        function displayImage(e) {
+            if (e.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    document.querySelector('#profileDisplay').setAttribute('src', e.target.result);
+                }
+                reader.readAsDataURL(e.files[0]);
+            }
+        }
+    </script>

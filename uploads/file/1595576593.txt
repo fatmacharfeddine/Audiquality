@@ -1,0 +1,284 @@
+  
+
+/***********************************************************API**************************************************************/
+  /*****this query allow evaluators to add evaluation to post(rationg,note) by evaluator_Id to table mrooglemarket_rating******/
+    function addEvaluation_post()
+    {
+        $evaluator_ID      = $this->post('evaluator_ID');
+
+        $pub_ID     = $this->post('pub_ID');
+
+        $rating_Date    = date("d/m/Y");
+
+        $rating_Value  = $this->post('rating_Value');
+
+        $Note  = $this->post('Note');
+
+
+
+
+        if (!$evaluator_ID || !$pub_ID || !$rating_Date || !$rating_Value) {
+
+            $this->response("Enter complete product information to save", 400);
+        } else {
+
+            $result = $this->Evaluator->addEvaluation(array("evaluator_ID" => $evaluator_ID, "pub_ID" => $pub_ID, "rating_Date" => $rating_Date, "rating_Value" => $rating_Value, "Note" => $Note));
+
+            if ($result === 0) {
+
+                $this->response("Product information coild not be saved. Try again.", 404);
+            } else {
+
+                $this->response("success", 200);
+            }
+        }
+    }
+    /*****this query allow evaluator to update personal information  on table mrooglemarket_evaluator****/
+    /* function updateEv_post()
+    {
+        $id = $this->post('evID');
+        $ev_name      = $this->post('ev_name');
+
+        $ev_Tel     = $this->post('ev_Tel');
+
+        $password     = $this->post('password');
+        if (!$ev_Tel || !$ev_name) {
+
+            $this->response("Enter complete owner information to save", 400);
+        } else {
+
+            $result = $this->Evaluator->update($id, array("evaluator_name" => $ev_name, "evaluator_Tel" => $ev_Tel, "password" => $password));
+
+            if ($result === 0) {
+
+                $this->response("Owner information coild not be saved. Try again.", 404);
+            } else {
+
+                $this->response("success", 200);
+            }
+        }
+    }*/
+    /*****this query allow evaluator to update profile picture on table mrooglemarket_evaluator*****/
+    /*  function updateEvPicture1_post()
+    {
+
+        $evID        = $this->post('evID');
+
+        if (isset($_FILES['Picture1'])) {
+
+            $check = getimagesize($_FILES['Picture1']['tmp_name']);
+
+            if ($check != false) {
+                //    header("Access-Control-Allow-Origin: *");
+                $target_path = "assets/uploads/files/";
+                // $uniquesavename=time().uniqid(rand());
+                $target_path = $target_path . basename($_FILES['Picture1']['name']);
+
+                if (move_uploaded_file($_FILES['Picture1']['tmp_name'], $target_path)) {
+                    //echo "Upload and move success";
+                }
+                $result = $this->Evaluator->update($evID, array("evaluator_Photo" => basename($_FILES['Picture1']['name'])));
+
+                if ($result === 0) {
+
+                    $this->response("Team information coild not be saved. Try again.", 404);
+                } else {
+
+                    $this->response("success", 200);
+                }
+            }
+        }
+    }*/
+    /****this query allow evaluator to update evaluation status on table mrooglemarket_requestsDemand*****/
+    function updateeval_post()
+    {
+
+        $id        = $this->post('requestID');
+
+        $status      = $this->post('status');
+
+
+
+        if (!$status) {
+
+            $this->response("Enter complete evaluation information to save", 400);
+        } else {
+
+            $result = $this->Evaluator->updateevaluation($id, array("status" => $status));
+
+            if ($result === 0) {
+
+                $this->response("update information coild not be saved. Try again.", 404);
+            } else {
+
+                $this->response("success", 200);
+            }
+        }
+    }
+    /****this query allow evaluator to update request status(accept/refuse) on table mrooglemarket_requestsDemand****/
+    /*  function updateRequestStatus_post()
+    {
+        $id  = $this->post('requestID');
+        $status  = $this->post('status');
+
+        if (!$id || !$status) {
+
+            $this->response("Enter complete client information to save", 400);
+        } else {
+
+            $result = $this->request_model->update($id, array("status" => $status));
+
+            if ($result === 0) {
+
+                $this->response("Request information could not be saved. Try again.", 404);
+            } else {
+
+                $this->response("success", 200);
+            }
+        }
+    }*/
+
+
+
+
+/************************************************Message**********************************************************************/
+
+
+
+
+    function addMessageC2C_post()
+    {
+
+        $MessageFrom  = $this->post('MessageFrom');
+        $MessageTo  = $this->post('MessageTo');
+        $messageTXT  = $this->post('messageTXT');
+
+        $message_Date = date("d-m-Y");
+
+        if (!$MessageFrom || !$MessageTo) {
+
+            $this->response("Error", 400);
+        } else {
+
+            $result = $this->Message->addMesg(array("MessageFrom" => $MessageFrom, "MessageTo" => $MessageTo, "messageTXT" => $messageTXT, "message_Date" => $message_Date));
+
+            if ($result === 0) {
+
+                $this->response("Error. Try again.", 404);
+            } else {
+
+                $this->response("success", 200);
+            }
+        }
+    }
+
+    function addMessageC2E_post()
+    {
+
+
+
+        $client_ID  = $this->post('client_ID');
+        $evaluator_ID  = $this->post('evaluator_ID');
+        $message_Text  = $this->post('message_Text');
+        $FromID = $this->post('FromID');
+
+
+        $message_Date = date("d-m-Y");
+
+        if (!$client_ID || !$evaluator_ID || !$FromID) {
+
+            $this->response("Error", 400);
+        } else {
+
+            $result = $this->Message->addMesgEv(array("client_ID" => $client_ID, "evaluator_ID" => $evaluator_ID, "message_Text" => $message_Text, "FromID" => $FromID, "message_Date" => $message_Date));
+
+            if ($result === 0) {
+
+                $this->response("Error. Try again.", 404);
+            } else {
+
+                $this->response("success", 200);
+            }
+        }
+    }
+
+
+
+
+/**************************************************Model***************************************************************/
+
+
+/*************************************************POST*****************************************************************/
+
+  public function addMesg($data)
+  {
+
+    if ($this->db->insert('mrooglemarket_messages', $data)) {
+
+      return true;
+    } else {
+
+      return false;
+    }
+  }
+
+  public function addMesgEv($data)
+  {
+
+    if ($this->db->insert('mrooglemarket_messagesevaluation', $data)) {
+
+      return true;
+    } else {
+
+      return false;
+    }
+  }
+
+
+/************************************************Evaluation Model*********************************************************/
+
+  public function addEvaluation($data)
+  {
+
+    if ($this->db->insert('mrooglemarket_rating', $data)) {
+
+      return true;
+    } else {
+
+      return false;
+    }
+  }
+  /*****update*******/
+  /*
+  public function update($id, $data)
+  {
+
+    $this->load->model('auth_model');
+    $dataflexi = array("password" => $data['password']);
+    $test = $this->flexi_auth->change_passwordNew($id, $data['password']);
+
+    $this->db->where('uacc_ID', $id);
+
+    if ($this->db->update('mrooglemarket_evaluator', $data)) {
+
+      return true;
+    } else {
+
+      return false;
+    }
+  }*/
+
+  /****updateevaluation*****/
+  public function updateevaluation($id, $data)
+  {
+
+    $this->db->where('requestID', $id);
+
+    if ($this->db->update('mrooglemarket_requestsDemand', $data)) {
+
+      return true;
+    } else {
+
+      return false;
+    }
+  }

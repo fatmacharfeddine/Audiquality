@@ -1,0 +1,3 @@
+[03-May-2021 07:11:39 UTC] PHP Fatal error:  Cannot use isset() on the result of a function call (you can use "null !== func()" instead) in /home/qualyone/public_html/application/controllers/Technical_Account.php on line 52
+[03-May-2021 07:22:19 UTC] PHP Fatal error:  require_once(): Failed opening required '../Header.php' (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home/qualyone/public_html/application/views/Employee/ChaptersMod/List_chapter.php on line 1
+[03-May-2021 07:22:37 UTC] PHP Fatal error:  require_once(): Failed opening required '../Header.php' (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home/qualyone/public_html/application/views/Employee/ChaptersMod/List_chapter.php on line 1

@@ -127,7 +127,6 @@
                                                                 <div class="dropdown dropdown-action">
                                                                     <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                                                                     <div class="dropdown-menu dropdown-menu-right">
-                                                                        <a class="dropdown-item" href="<?php echo base_url(); ?>Employee_Account/view_interest?ID_interest=<?php echo $row['ID_interest'] ?>"><i class="fa fa-pencil m-r-5"></i> View</a>
                                                                         <a class="dropdown-item" href="<?php echo base_url(); ?>Employee_Account/Form_edit_interest?ID_interest=<?php echo $row['ID_interest'] ?>"><i class="fa fa-pencil m-r-5"></i> Edit</a>
                                                                         <a class="dropdown-item" href="<?php echo base_url(); ?>Employee_Account/Delete_interest?ID_interest=<?php echo $row['ID_interest'] ?>"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                                                                     </div>

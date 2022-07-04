@@ -16849,10 +16849,7 @@ class Employee_Account extends CI_Controller
 			/*********************End Access Verif************************/
 			$this->data['ID_skill_employee'] = $_GET['ID_skill_employee'];
 			$this->data['employee'] = $this->Mskillemployee->get_skill_employee_by_ID($this->data['ID_skill_employee']);
-
-			/*$this->data['employeess'] = $this->Mskillemployee->get_skill_employee_by_ID($this->data['ID_skill_employee']);*/
-			/*******update fatma *******/
-			$this->data['ID_employeezzz'] = $this->data['employee'][0]['ID_employee'];
+			$this->data['ID_employee'] = $this->data['employee'][0]['ID_employee'];
 			$this->data['ID_skill'] = $this->data['employee'][0]['ID_skill'];
 			$this->data['Name_employee'] = $this->data['employee'][0]['Name_employee'];
 			$this->data['Name_skill'] = $this->data['employee'][0]['Name_skill'];

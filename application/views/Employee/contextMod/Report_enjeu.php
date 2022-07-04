@@ -29,17 +29,37 @@
                 <div class="col-md-12">
                     <div class="table-responsive">
                         <table class="table table-striped custom-table">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
 
 
-                                <?php if (isset($enjeux)) {
-                                    foreach ($enjeux as $row) {
-                                ?>
+
+                            <?php if (isset($enjeux)) {
+                                foreach ($enjeux as $row) {
+                            ?>
+                                    <?php if ($row['ID_swot'] == 1) {
+                                        $swot = "Force";
+                                    } ?>
+                                    <?php if ($row['ID_swot'] == 2) {
+                                        $swot = "Faiblesse";
+                                    } ?>
+                                    <?php if ($row['ID_swot'] == 3) {
+                                        $swot = "Menace";
+                                    } ?>
+                                    <?php if ($row['ID_swot'] == 4) {
+                                        $swot = "Opportunité";
+                                    } ?>
+
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Type Enjeu : <?php echo $swot ?>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <?php  ?>
+
+
                                         <tr>
                                             <td>
 
@@ -163,10 +183,10 @@
 
                                         </tr>
 
+                                    </tbody>
 
-                                <?php }
-                                } ?>
-                            </tbody>
+                            <?php }
+                            } ?>
                         </table>
 
 

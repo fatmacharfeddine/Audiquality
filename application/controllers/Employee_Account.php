@@ -16838,36 +16838,25 @@ class Employee_Account extends CI_Controller
 
 	public function view_skill_employee()
 	{
-
 		$this->commonData();
-
 		/*************************Access Verif************************/
 		$this->function_type = "view";
 		$current_function = "List_res_humain";
 		$this->commonAccess($current_function);
-		//echo $this->test_verif_view;
-		//	die();
 		$this->load->view('Employee/Header');
 		$this->load->view('Employee/Menu', $this->data);
-
-
-
-
-
 		if (($this->test_verif_view == 1) || ($this->test_verif_edit == 1)) {
 			/*********************End Access Verif************************/
 			$this->data['ID_skill_employee'] = $_GET['ID_skill_employee'];
-
 			$this->data['employee'] = $this->Mskillemployee->get_skill_employee_by_ID($this->data['ID_skill_employee']);
-			//echo print_r($this->data['employee']);
-			//die();
+		
+			/*$this->data['employeess'] = $this->Mskillemployee->get_skill_employee_by_ID($this->data['ID_skill_employee']);*/
+
 			$this->data['ID_employee'] = $this->data['employee'][0]['ID_employee'];
 			$this->data['ID_skill'] = $this->data['employee'][0]['ID_skill'];
 			$this->data['Name_employee'] = $this->data['employee'][0]['Name_employee'];
-
 			$this->data['Name_skill'] = $this->data['employee'][0]['Name_skill'];
 			$this->data['Grade_skill_employee'] = $this->data['employee'][0]['Grade_skill_employee'];
-
 			$this->load->view('Employee/EmployeeskillMod/View_skill_employee.php', $this->data);
 		} else {
 			$this->load->view('Employee/No_access.php', $this->data);
@@ -16875,7 +16864,6 @@ class Employee_Account extends CI_Controller
 		$this->load->view('Employee/Footer');
 		/*********************End Access Verif************************/
 	}
-
 
 	/***************************************************************************/
 	/***************************************************************************/

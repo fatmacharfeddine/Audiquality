@@ -76,20 +76,14 @@
                                                 <div class="form-group row">
                                                     <label class="col-form-label col-md-3">Date</label>
                                                     <div class="col-md-9">
-                                                        <input type="date" class="form-control" name="Date_risk" value="<?php if (isset($Date_risk)) {
-                                                                                                                            echo $Date_risk;
-                                                                                                                        } ?>" placeholder="Date">
-                                                        </textarea>
+                                                        <input type="date" class="form-control" name="Date_risk" value="<?php echo date('Y-m-d',strtotime($Date_risk)) ?>" placeholder="Date">
 
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-form-label col-md-3">Next Date</label>
                                                     <div class="col-md-9">
-                                                        <input type="date" class="form-control" name="Next_date_risk" value="<?php if (isset($Next_date_risk)) {
-                                                                                                                                    echo $Next_date_risk;
-                                                                                                                                } ?>" placeholder="Next Date">
-                                                        </textarea>
+                                                        <input type="date" class="form-control" name="Next_date_risk" value="<?php echo date('Y-m-d',strtotime($Next_date_risk)) ?>" placeholder="Next Date">
 
                                                     </div>
                                                 </div>
@@ -97,10 +91,9 @@
                                                 <div class="form-group row">
                                                     <label class="col-form-label col-md-3">Description</label>
                                                     <div class="col-md-9">
-                                                        <textarea cols="30" rows="6" class="form-control" name="Description_risk" value="<?php if (isset($Description_risk)) {
-                                                                                                                                                echo $Description_risk;
-                                                                                                                                            } ?>" placeholder="Description">
-                                                                                                                        </textarea>
+                                                        <textarea name="Description_risk" cols="30" rows="6" class="form-control"> <?php if (isset($Description_risk)) {
+                                                                                                                                        echo $Description_risk;
+                                                                                                                                    } ?>  </textarea>
 
                                                     </div>
                                                 </div>
@@ -115,7 +108,7 @@
 
 
 
-                                        <div class="text-right">
+                                        <div class=" text-right">
                                         <button type="button" id="btn_add" class="btn btn-primary">Confirm</button>
                                         </div>
                                     </form>

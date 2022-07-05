@@ -76,14 +76,18 @@
                                                 <div class="form-group row">
                                                     <label class="col-form-label col-md-3">Date</label>
                                                     <div class="col-md-9">
-                                                        <input type="date" class="form-control" name="Date_risk" value="<?php echo date('Y-m-d',strtotime($Date_risk)) ?>" placeholder="Date">
+                                                        <input type="date" class="form-control" name="Date_risk" value="<?php if (isset($Date_risk)) {
+                                                                                                                            echo date('Y-m-d', strtotime($Date_risk));
+                                                                                                                        } ?>" placeholder="Date">
 
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-form-label col-md-3">Next Date</label>
                                                     <div class="col-md-9">
-                                                        <input type="date" class="form-control" name="Next_date_risk" value="<?php echo date('Y-m-d',strtotime($Next_date_risk)) ?>" placeholder="Next Date">
+                                                        <input type="date" class="form-control" name="Next_date_risk" value="<?php if (isset($Next_date_risk)) {
+                                                                                                                                    echo date('Y-m-d', strtotime($Next_date_risk));
+                                                                                                                                }  ?>" placeholder="Next Date">
 
                                                     </div>
                                                 </div>
@@ -109,7 +113,7 @@
 
 
                                         <div class=" text-right">
-                                        <button type="button" id="btn_add" class="btn btn-primary">Confirm</button>
+                                            <button type="button" id="btn_add" class="btn btn-primary">Confirm</button>
                                         </div>
                                     </form>
 
@@ -129,7 +133,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
 
     <script>

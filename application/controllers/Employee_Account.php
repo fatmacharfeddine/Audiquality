@@ -4303,7 +4303,7 @@ class Employee_Account extends CI_Controller
 				$this->Mrisk_action->delete_action($this->data['ID_risk']);
 				$this->Mrisk_action->delete_action_list($this->data['ID_risk']);
 			}
-			return redirect(base_url() . 'Employee_Account/View_risk?ID_risk=' . $_POST['ID_risk']);
+			return redirect(base_url() . 'Employee_Account/List_risk');
 
 			/*************************Access Verif************************/
 		} else {
@@ -4865,8 +4865,7 @@ class Employee_Account extends CI_Controller
 			if ($_GET) {
 				//echo 'hi'; die();
 				$this->data['ID_risk'] = $_GET['ID_risk'];
-				//			$this->data['ID_sector'] = $_GET['ID_sector'];
-
+				//$this->data['ID_sector'] = $_GET['ID_sector'];
 				$this->data['ID_identification'] = $_GET['ID_identification'];
 				$this->data['identify'] = $this->Mrisk_identification->delete_identification($this->data['ID_identification']);
 				$this->Mrisk_evaluation->delete_evaluation($this->data['ID_identification']);

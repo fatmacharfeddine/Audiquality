@@ -30,7 +30,23 @@
                             <div class="col-md-12">
                                 <div class="card-box">
                                     <form id="popup" action="<?php echo base_url(); ?>Employee_Account/Submit_add_risk/" enctype="multipart/form-data" method="post">
+                                        <div class="row" style="margin-bottom: 3%;">
+                                            <div class="col-md-3">
+                                            </div>
+                                            <?php if (isset($_GET['ErrorDate'])) {
+                                            ?>
+                                                <div class="col-md-6 dateError">
+
+                                                    <p>la date debut doit etre inferieur a la date fin</p>
+
+                                                </div>
+                                            <?php
+                                            } ?>
+                                            <div class="col-md-3">
+                                            </div>
+                                        </div>
                                         <div class="row">
+
                                             <div class="col-md-6">
 
                                                 <?php if (isset($ID_risk)) {

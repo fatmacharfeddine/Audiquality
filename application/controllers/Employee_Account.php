@@ -4223,13 +4223,23 @@ class Employee_Account extends CI_Controller
 				if (isset($_POST['ID_risk'])) {
 					//echo 'heey'; die();
 					$ID_risk = $_POST['ID_risk'];
-					$this->Mrisk->edit_risk($this->data, $ID_risk);
+					if ($_POST['Date_risk'] < $_POST['Next_date_risk']) {
+
+						$this->Mrisk->edit_risk($this->data, $ID_risk);
+					} else {
+						return redirect(base_url() . 'Employee_Account/Form_edit_risk?ID_risk=' . $ID_risk.'&ErrorDate=1');
+					}
 				} else {
-					$_POST['ID_risk'] = $this->Mrisk->add_risk($this->data);
+					if ($_POST['Date_risk'] < $_POST['Next_date_risk']) {
+
+						$_POST['ID_risk'] = $this->Mrisk->add_risk($this->data);
+					} else {
+						return redirect(base_url() . 'Employee_Account/Form_add_risk?ErrorDate=1');
+					}
 				}
 			}
 
-			return redirect(base_url() . 'Employee_Account/View_risk?ID_risk=' . $_POST['ID_risk']);
+			return redirect(base_url() . 'Employee_Account/List_risk');
 			/*************************Access Verif************************/
 		} else {
 			$this->load->view('Employee/No_access.php', $this->data);

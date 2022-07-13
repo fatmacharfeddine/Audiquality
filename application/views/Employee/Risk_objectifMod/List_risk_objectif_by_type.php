@@ -11,7 +11,11 @@
                 <div class="col-sm-4 col-md-4 col-lg-4 col-xl-3">
                     <div class="roles-menu">
                         <ul>
-                            <?php if (isset($processus)) {
+                            <?php
+                            if(isset($exist)){
+                                echo "auccun processus";
+                            }else{
+                            if (isset($processus)) {
                                 foreach ($processus as $row) {
                                     if ($row['ID_processus'] == $current_processus) {
                             ?>
@@ -19,16 +23,8 @@
                                         <li class="active">
                                             <a href="javascript:void(0);"><?= $row['Title_processus'] ?></a>
                                             <span class="role-action">
-                                                <a href="<?php echo base_url(); ?>Employee_Account/Form_edit_processus?ID_processus=<?php echo $row['ID_processus'] ?>">
-                                                    <span class="action-circle large">
-                                                        <i class="material-icons">edit</i>
-                                                    </span>
-                                                </a>
-                                                <a href="<?php echo base_url(); ?>Employee_Account/Delete_processus?ID_processus=<?php echo $row['ID_processus'] ?>" data-toggle="modal" data-target="#delete_role">
-                                                    <span class="action-circle large delete-btn">
-                                                        <i class="material-icons">delete</i>
-                                                    </span>
-                                                </a>
+                                                
+                                               
                                             </span>
                                         </li>
                                     <?php } else { ?>
@@ -150,7 +146,7 @@
 
                                             </td>
                                             <td style="border-color: #b8daff;">
-                                                <a href="<?php echo base_url() ?>/Employee_Account/delete_risk_objectif?ID_risk_objectif=<?php echo $row['ID_risk_objectif'] ?>&ID_processus=<?php echo $current_processus ?>&processcategory=<?php echo $processcategory; ?>">
+                                                <a href="<?php echo base_url() ?>/Employee_Account/delete_risk_objectif?ID_risk_objectif=<?php echo $row['ID_risk_objectif'] ?>&ID_processus=<?php echo $current_processus ?>&processcategory=<?php echo $processcategory; ?>" onclick="return confirm('Êtes-vous sûr?')">
                                                     <button class="btn btn-primary btn-primary-four float-right" style="width: 38px;"><i class="fa fa-trash-o m-r-5"></i></button>
                                                 </a>
 
@@ -161,7 +157,7 @@
                                     <?php
                                     }
                                 }
-
+                            }
 
                                     ?>
 

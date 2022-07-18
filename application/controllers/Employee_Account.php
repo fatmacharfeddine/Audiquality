@@ -6306,8 +6306,6 @@ class Employee_Account extends CI_Controller
 				$this->data['Taux_risk_objectif2'] = $this->data['risk_objectif'][0]['Taux_risk_objectif2'];
 				$this->data['Taux_risk_objectif3'] = $this->data['risk_objectif'][0]['Taux_risk_objectif3'];
 				$this->data['Frequence_risk_objectif'] = $this->data['risk_objectif'][0]['Frequence_risk_objectif'];
-
-
 			}
 			//echo $this->data['Date_risk_objectif'];die();
 			$this->load->view('Employee/Risk_objectifMod/Add_risk_objectif.php', $this->data);
@@ -6410,16 +6408,21 @@ class Employee_Account extends CI_Controller
 			//$this->data['risk_objectif'] = $this->Mrisk_objectif->get_risk_objectif_by_ID_company($this->data['ID_company']);
 			$this->data['interest'] = $this->Mprocessus->get_interest();
 			$this->data['processus'] = $this->Mprocessus->get_processus_by_category($this->data['processcategory']);
-			if (isset($_GET['ID_processus'])) {
-				$this->data['current_processus'] = $_GET['ID_processus'];
-			} else {
-				$this->data['current_processus'] = $this->data['processus'][0]['ID_processus'];
-			}
-			$this->data['processus_ID'] = $this->Mprocessus->get_processus_by_ID($this->data['current_processus']);
-			$this->data['Title_processus'] = $this->data['processus_ID'][0]['Title_processus'];
+			if ($this->data['processus'] != null) {
 
-			//$this->data['objectif'] = $this->Mrisk_objectif->get_risk_objectif_by_processus($this->data['current_processus']);
-			$this->data['planification'] = $this->Mrisk_planification->get_risk_planification_by_processus($this->data['current_processus']);
+				if (isset($_GET['ID_processus'])) {
+					$this->data['current_processus'] = $_GET['ID_processus'];
+				} else {
+					$this->data['current_processus'] = $this->data['processus'][0]['ID_processus'];
+				}
+				$this->data['processus_ID'] = $this->Mprocessus->get_processus_by_ID($this->data['current_processus']);
+				$this->data['Title_processus'] = $this->data['processus_ID'][0]['Title_processus'];
+
+				//$this->data['objectif'] = $this->Mrisk_objectif->get_risk_objectif_by_processus($this->data['current_processus']);
+				$this->data['planification'] = $this->Mrisk_planification->get_risk_planification_by_processus($this->data['current_processus']);
+			} else {
+				$this->data['exist'] = 1;
+			}
 
 			$this->load->view('Employee/Risk_planificationMod/List_risk_planification_by_type.php', $this->data);
 			/*************************Access Verif************************/
@@ -8285,7 +8288,7 @@ class Employee_Account extends CI_Controller
 			}
 			$this->data['recuitments'] = $this->Mrecuitment->get_recuitment_eval_emp_paging($page);
 			/*echo "<pre>";
-					echo print_r($this->data['recuitments']);
+					echo print_r($this->data['nb']);
 					echo "<pre>";
 					die();*/
 			$this->data['doc_upload'] = $this->Mrecuitment->get_doc_upload(2);

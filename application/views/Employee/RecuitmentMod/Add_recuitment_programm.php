@@ -62,11 +62,10 @@
                                                         <?php } ?>
                                                         <input type="text" name="Name_Candidat" value="<?php if (isset($Name_Candidat)) {
                                                                                                             echo $Name_Candidat;
-                                                                                                        } ?>" placeholder="Title recuitment_programm" class="form-control">
+                                                                                                        } ?>" placeholder="Title recuitment_programm" class="form-control" required>
 
                                                     </div>
                                                 </div>
-
 
                                                 <div class="form-group row">
                                                     <label class="col-form-label col-md-3">Evalué par </label>
@@ -108,10 +107,10 @@
                                                     <div class="col-md-9">
 
                                                         <input type="date" name="Date_recuitment_programm" value="<?php if (isset($Date_recuitment_programm)) {
-                                                                                                                        echo $Date_recuitment_programm;
+                                                                                                                        echo   date('Y-m-d', strtotime($Date_recuitment_programm));
                                                                                                                     } ?>" placeholder="<?php if (isset($Date_recuitment_programm)) {
-                                                                                                                            echo $Date_recuitment_programm;
-                                                                                                                        } ?>" class="form-control">
+                                                                                                                                            echo $Date_recuitment_programm;
+                                                                                                                                        } ?>" class="form-control" required>
 
                                                     </div>
                                                 </div>

@@ -1,4 +1,22 @@
 <style>
+    .btn-primary-one {
+        border: 1px solid #dee2e6;
+        color: white;
+    }
+
+    .pestel {
+        width: 100%;
+        text-align: center;
+        padding: 5px;
+        color: black;
+    }
+
+    .pr {
+        border: solid grey 1px;
+        border-radius: 50px;
+        padding: 0.4% 1% 0.4% 1%;
+    }
+
     .float-right pestle {
         background-color: red;
         padding: 1%;
@@ -13,7 +31,7 @@
     <div class="page-wrapper" style="min-height: 314px;">
 
         <div class="row">
-           
+
         </div> <br>
         <div class="col-sm-7 col-8 text-right m-b-30">
             <div class="btn-group btn-group-sm">
@@ -21,7 +39,7 @@
             </div>
         </div>
 
-        <div class="content"  id="printMe">
+        <div class="content" id="printMe">
 
 
             <div class="row">
@@ -56,39 +74,56 @@
             <div class="row">
 
                 <div class="col-sm-12">
-                    <table class="table table-border table-striped custom-table datatable mb-0 dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
-                        <thead>
-                            <tr role="row">
-                                <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 142px;">Parties Interessées</th>
-                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 5px;"></th>
-
-                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 30px;">Attentes</th>
-                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 30px;">Exigences</th>
-                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 30px;">Méthode de Suivi</th>
-                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 30px;">Fréquence de Suivi</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            <?php
-                            if (isset($interest)) {
-                                if (isset($empty)) {
-                            ?>
-                                    <?php } else {
-                                    foreach ($interest as $row) {
-                                    ?>
-                                        <tr role="row" class="odd">
 
 
 
-                                            <td class="sorting_1"><?= $row['Participant_interest'] ?></td>
-                                            <td class="sorting_1"> <img src="<?php echo base_url() ?>//includes/ext/assets/template/img/context/fleche2.png" alt="" style="width: 100%;">
-                                            </td>
-                                            <td class="sorting_1"><?php echo $row['Attente_interest'] ?></td>
-                                            <td class="sorting_1"><?php echo $row['Exigence_interest'] ?></td>
+                    <!-------------------------------------------------------------------------------------->
+                    <!-------------------------------------------------------------------------------------->
+                    <!-------------------------------------------------------------------------------------->
 
-                                            <td class="sorting_1">
+                    <table class="table table-striped custom-table">
+
+
+
+                        <?php if (isset($interest)) {
+                            foreach ($interest as $row) {
+                        ?>
+
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <?= $row['Participant_interest'] ?>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <?php  ?>
+
+
+                                    <tr>
+                                        <td>
+
+
+                                            <table class="table table-striped custom-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width:50%"> Attente </th>
+                                                        <th style="width:50%"> Exigence </th>
+                                                    </tr>
+
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="width:50%"><?php echo $row['Attente_interest'] ?></td>
+                                                        <td style="width:50%"><?php echo $row['Exigence_interest'] ?></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+
+
+                                            <h6><span>Méthode de suivi :</span>
 
                                                 <?php
                                                 if ($row['Method_interest'] == 1) {
@@ -102,8 +137,9 @@
                                                 }
                                                 ?>
 
-                                            </td>
-                                            <td class="sorting_1">
+                                            </h6>
+                                            <h6><span>Fréquence de suivi :</span>
+
                                                 <?php
                                                 if ($row['Frequence_interest'] == 1) {
                                                     echo "hebdomadaire";
@@ -121,54 +157,63 @@
                                                     echo "annuel";
                                                 }
                                                 ?>
-                                            </td>
 
-                                            <!--
-                                                            <?php if ($row['Priority_interest'] == 0) { ?>
+                                            </h6>
 
-                                                                <td>
-                                                                    <h5 class="time-title p-0"><?= $row['Priority_interest'] ?></h5>
-                                                                </td>
-                                                            <?php } ?>
 
-                                                            <?php if ($row['Priority_interest'] == 1) { ?>
 
-                                                                <td class="table-danger">
-                                                                    <h5 class="time-title p-0"><?= $row['Priority_interest'] ?></h5>
-                                                                </td>
-                                                            <?php } ?>
-                                                            <?php if ($row['Priority_interest'] == 2) { ?>
+                                            <h6>Pertinance :
+                                                <?php if ($row['Priority_interest'] == 1) { ?>
 
-                                                                <td class="table-warning">
-                                                                    <h5 class="time-title p-0"><?= $row['Priority_interest'] ?></h5>
-                                                                </td>
-                                                            <?php } ?> <?php if ($row['Priority_interest'] == 3) { ?>
+                                                    <span class="pr table-danger" style="background-color:#e41a23;color:white;text-align:center;border: solid white 3px;"><?= $row['Priority_interest'] ?></span>
 
-                                                                <td class="table-light">
-                                                                    <h5 class="time-title p-0"><?= $row['Priority_interest'] ?></h5>
-                                                                </td>
-                                                            <?php } ?> <?php if ($row['Priority_interest'] == 4) { ?>
+                                                <?php } ?>
+                                                <?php if ($row['Priority_interest'] == 2) { ?>
 
-                                                                <td class="table-primary">
-                                                                    <h5 class="time-title p-0"><?= $row['Priority_interest'] ?></h5>
-                                                                </td>
-                                                            <?php } ?> <?php if ($row['Priority_interest'] == 5) { ?>
+                                                    <span class="pr table-warning" style="background-color:#e85628;color:white;text-align:center;border: solid white 3px;">
+                                                        <?= $row['Priority_interest'] ?>
+                                                    </span>
+                                                <?php } ?> <?php if ($row['Priority_interest'] == 3) { ?>
 
-                                                                <td class="table-success">
-                                                                    <h5 class="time-title p-0"><?= $row['Priority_interest'] ?></h5>
-                                                                </td>
-                                                            <?php } ?>
-                                                            -->
+                                                    <span class="pr table-light" style="background-color:#ece52f;color:white;text-align:center;border: solid white 3px;">
+                                                        <?= $row['Priority_interest'] ?>
+                                                    </span>
+                                                <?php } ?> <?php if ($row['Priority_interest'] == 4) { ?>
+
+                                                    <span class="pr table-primary" style="background-color:#0b8e41;color:white;text-align:center;border: solid white 3px;">
+                                                        <?= $row['Priority_interest'] ?>
+                                                    </span>
+                                                <?php } ?> <?php if ($row['Priority_interest'] == 5) { ?>
+
+                                                    <span class="pr table-success" style="background-color:#0d71b6;color:white;text-align:center;border: solid white 3px;">
+                                                        <?= $row['Priority_interest'] ?>
+                                                    </span>
+                                                <?php } ?>
+                                            </h6>
 
 
 
 
-                                        </tr>
-                            <?php }
-                                }
-                            } ?>
-                        </tbody>
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+
+                        <?php }
+                        } ?>
                     </table>
+
+                    <!-------------------------------------------------------------------------------------->
+                    <!-------------------------------------------------------------------------------------->
+                    <!-------------------------------------------------------------------------------------->
+
+
+
+
+
+
+
                 </div>
 
             </div>

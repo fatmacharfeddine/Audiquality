@@ -192,7 +192,7 @@ class Employee_Account extends CI_Controller
 		/*		echo print_r($this->data['access_account']);
 		die();*/
 		$this->data['department_account'] = $this->Memployeeaccount->get_department_by_employee($this->data['ID_connected_employee']);
-		$this->data['current_department'] = $this->data['department_account'][0]['ID_department'];
+	//	$this->data['current_department'] = $this->data['department_account'][0]['ID_department'];
 
 		/******************** End Access Menu *******************************/
 
@@ -8761,8 +8761,8 @@ class Employee_Account extends CI_Controller
 				$this->data['Phone_employee'] = $this->data['employee'][0]['Phone_employee'];
 				$this->data['Email_employee'] = $this->data['employee'][0]['Email_employee'];
 				$this->data['Login_employee'] = $this->data['employee'][0]['Login_employee'];
-				$this->data['Password_employee'] = $this->data['employee'][0]['Password_employee'];
-				$this->data['Num_pwd_employee'] = $this->data['employee'][0]['Num_pwd_employee'];
+			//	$this->data['Password_employee'] = $this->data['employee'][0]['Password_employee'];
+			//	$this->data['Num_pwd_employee'] = $this->data['employee'][0]['Num_pwd_employee'];
 				//	$this->data['ID_department_post'] = $this->data['employee'][0]['ID_department_post'];
 				//	$this->data['Name_post'] = $this->data['employee'][0]['Name_post'];
 				$this->data['ID_access_group'] = $this->data['employee'][0]['ID_access_group'];
@@ -9315,11 +9315,6 @@ class Employee_Account extends CI_Controller
 		$this->commonAccess($current_function);
 		$this->load->view('Employee/Header');
 		$this->load->view('Employee/Menu', $this->data);
-
-
-
-
-
 		if ($this->test_verif_edit == 1) {
 			/*********************End Access Verif************************/
 
@@ -10050,7 +10045,7 @@ class Employee_Account extends CI_Controller
 
 				$this->Maudit->delete_processus($this->data['ID_processus']);
 			}
-			return redirect(base_url() . 'Employee_Account/List_Processus');
+			return redirect(base_url() . 'Employee_Account/List_Processus_list');
 			/*************************Access Verif************************/
 		} else {
 			$this->load->view('Employee/No_access.php', $this->data);
@@ -10471,20 +10466,49 @@ class Employee_Account extends CI_Controller
 		if (($this->test_verif_view == 1) || ($this->test_verif_edit == 1)) {
 			/*********************End Access Verif************************/
 			//	echo $this->data['ID_company'] ; die();
-			$this->data['processus'] = $this->Mprocessus->get_processus($this->data['ID_company']);
+			$this->data['processus'] = $this->Mprocessus->get_processus_Id_name($this->data['ID_company']);
+			$nb_proc = $this->Mprocessus->get_processus_nb($this->data['ID_company']);
+			// echo $this->data['nb'];
+			// die();
+			$current_first_lig = array();
 
-			$this->data['processus_row'] = $this->Mprocessus->get_processus_row($this->data['ID_company']);
+			for ($i = 0; $i < $nb_proc; $i++) {
+				$current_first_lig = $this->data['processus'][0];
+				// echo print_r($current_first_lig);
+				// die();
+				$current = array();
+				$next = array();
 
-			$this->data['processus_col'] = $this->Mprocessus->get_processus_col($this->data['ID_company']);
+				$matrix = array(
+					$this->data['processus'],
+				);
+				// echo print_r($matrix);
+				// die();
+				$current = $current_first_lig;
+				$ID_processus = $this->data['processus'][0]['ID_processus'];
+				$ID_processus_interaction = $this->data['processus'][0]['ID_processus'];
+				$this->data['interact'] = $this->Mprocessus->get_interact_Id_name($ID_processus, $ID_processus_interaction);
 
-			/*	echo "<pre>";
-			echo print_r($this->data1['processus_row']);
-			echo "<pre>";
-			echo "*****************************";
-			echo "<pre>";
-			echo print_r($this->data2['processus_col']);
-			echo "<pre>";
-			die();*/
+				//$next=
+				array_push($current, $next);
+				echo print_r($current);
+				die();
+				//	
+
+
+			}
+			// $this->data1['processus_row'] = $this->Mprocessus->get_processus_row($this->data['ID_company']);
+
+			// $this->data2['processus_col'] = $this->Mprocessus->get_processus_col($this->data['ID_company']);
+
+			// 	echo "<pre>";
+			// echo print_r($this->data1['processus_row']);
+			// echo "<pre>";
+			// echo "*****************************";
+			// echo "<pre>";
+			// echo print_r($this->data2['processus_col']);
+			// echo "<pre>";
+			// die();
 
 			$this->load->view('Employee/ProcessusMod/View_matrix.php', $this->data);
 			/*************************Access Verif************************/
@@ -11822,7 +11846,11 @@ class Employee_Account extends CI_Controller
 				$this->data['interest'] = $this->Minterest->get_interest_by_ID($this->data['ID_interest']);
 				$this->data['Participant_interest'] = $this->data['interest'][0]['Participant_interest'];
 				$this->data['Attente_interest'] = $this->data['interest'][0]['Attente_interest'];
+				$this->data['Exigence_interest'] = $this->data['interest'][0]['Exigence_interest'];
 				$this->data['Priority_interest'] = $this->data['interest'][0]['Priority_interest'];
+				$this->data['Method_interest'] = $this->data['interest'][0]['Method_interest'];
+				$this->data['Frequence_interest'] = $this->data['interest'][0]['Frequence_interest'];
+
 				//	$this->data['ID_interest_group'] = $this->data['interest'][0]['ID_interest_group'];
 			}
 			$this->load->view('Employee/interestMod/Add_interest.php', $this->data);

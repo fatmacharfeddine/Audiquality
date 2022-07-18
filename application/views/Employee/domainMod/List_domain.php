@@ -55,16 +55,16 @@
                         <?php if (isset($ID_domain)) {
                         ?>
 
-                            <div class="doc-prof" style="color:#009efb">
+                            <!-- <div class="doc-prof" style="color:#009efb">
                                 <a href="<?php echo base_url(); ?>uploads/Domain/<?php echo $file_domain ?>">Open File</a>
-                            </div>
+                            </div> -->
                             <div class="user-country">
                                 <?php echo $name_domain ?>
                             </div>
 
                             <div class="text-center m-t-20">
 
-                                <a href="#" style="width: 38px;" class="btn btn-primary btn-primary-three" data-toggle="modal" data-target="#add_group"><i class="fa fa-pencil m-r-5"></i> </a>
+                                <!-- <a href="#" style="width: 38px;" class="btn btn-primary btn-primary-three" data-toggle="modal" data-target="#add_group"><i class="fa fa-pencil m-r-5"></i> </a> -->
                                 <a href="<?php echo base_url() ?>/Employee_Account/delete_domaine?ID_domain=<?php echo $ID_domain ?>" style="width: 38px;" class="btn btn-primary btn-primary-four"><i class="fa fa-trash-o m-r-5"></i> </a>
 
                             </div>
@@ -181,6 +181,7 @@
 
 
                                         </div>
+
                                     </div>
                                 </div>
 
@@ -191,6 +192,15 @@
                     <!---------------------------End pop-up ------------------------------->
 
                 </div>
+                <?php if ((isset($file_domain)) && ($file_domain != null)) {  ?>
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body" style="text-align: center;">
+                                <embed src="<?php echo base_url() ?>/uploads/Domain/<?php echo $file_domain ?>" width="480" height="500">
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
             </div>
 
 
@@ -201,3 +211,16 @@
     </div>
     </div>
 
+    <script>
+        function printDiv(divName) {
+            var printContents = document.getElementById(divName).innerHTML;
+            var originalContents = document.body.innerHTML;
+
+            document.body.innerHTML = printContents;
+
+            window.print();
+
+            document.body.innerHTML = originalContents;
+
+        }
+    </script>

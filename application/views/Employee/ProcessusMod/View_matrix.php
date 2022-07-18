@@ -20,9 +20,9 @@
                                 <?php foreach ($processus as $row) { ?>
                                     <tr>
                                         <td><?php echo $row['Title_processus'] ?></td>
-                                   
-                                    </tr>
                                     
+                                    </tr>
+
                                 <?php    } ?>
 
                             </tbody>

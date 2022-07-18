@@ -8,7 +8,7 @@
 
                 </div>
                 <div class="col-sm-8 col-9 text-right m-b-20">
-                <a style="background-color: #bad100;" href="<?php echo base_url(); ?>uploads/Document_upload/<?php echo $File_document_upload ?>" class="btn btn btn-primary btn-rounded float-right"><i class="fa fa-download" aria-hidden="true"></i> Download Evaluation Form</a>
+                <a style="background-color: #bad100;" href="<?php echo base_url(); ?>uploads/Document_upload/<?php echo $File_document_upload ?>" class="btn btn btn-primary btn-rounded float-right"><i class="fa fa-download" aria-hidden="true"></i> Download Integration Form</a>
 
                 </div>
             </div>

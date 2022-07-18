@@ -22,6 +22,8 @@
                                         <thead>
                                             <tr role="row">
                                                 <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 142px;">Parties Interessées</th>
+                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 30px;">Priorité</th>
+
                                                 <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 5px;"></th>
 
                                                 <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 30px;">Attentes</th>
@@ -46,6 +48,43 @@
 
 
                                                             <td class="sorting_1"><?= $row['Participant_interest'] ?></td>
+
+
+                                                            <?php if ($row['Priority_interest'] == 0) { ?>
+
+                                                                <td>
+                                                                    <h5 class="time-title p-0">--</h5>
+                                                                </td>
+                                                            <?php } ?>
+
+                                                            <?php if ($row['Priority_interest'] == 1) { ?>
+
+                                                                <td style="background-color:#e41a23;color:white;text-align:center">
+                                                                    <h5 class="time-title p-0"><?= $row['Priority_interest'] ?></h5>
+                                                                </td>
+                                                            <?php } ?>
+                                                            <?php if ($row['Priority_interest'] == 2) { ?>
+
+                                                                <td style="background-color:#e85628;color:white;text-align:center">
+                                                                    <h5 class="time-title p-0"><?= $row['Priority_interest'] ?></h5>
+                                                                </td>
+                                                            <?php } ?> <?php if ($row['Priority_interest'] == 3) { ?>
+
+                                                                <td style="background-color:#ece52f;color:white;text-align:center">
+                                                                    <h5 class="time-title p-0"><?= $row['Priority_interest'] ?></h5>
+                                                                </td>
+                                                            <?php } ?> <?php if ($row['Priority_interest'] == 4) { ?>
+
+                                                                <td style="background-color:#0b8e41;color:white;text-align:center">
+                                                                    <h5 class="time-title p-0"><?= $row['Priority_interest'] ?></h5>
+                                                                </td>
+                                                            <?php } ?> <?php if ($row['Priority_interest'] == 5) { ?>
+
+                                                                <td style="background-color:#0d71b6;color:white;text-align:center">
+                                                                    <h5 class="time-title p-0"><?= $row['Priority_interest'] ?></h5>
+                                                                </td>
+                                                            <?php } ?>
+
                                                             <td class="sorting_1"> <img src="<?php echo base_url() ?>//includes/ext/assets/template/img/context/fleche2.png" alt="" style="width: 100%;">
                                                             </td>
                                                             <td class="sorting_1"><?php echo $row['Attente_interest'] ?></td>
@@ -53,7 +92,7 @@
 
                                                             <td class="sorting_1">
 
-                                                                <?php 
+                                                                <?php
                                                                 if ($row['Method_interest'] == 1) {
                                                                     echo "Formulaire";
                                                                 }
@@ -67,61 +106,25 @@
 
                                                             </td>
                                                             <td class="sorting_1">
-                                                            <?php 
+                                                                <?php
                                                                 if ($row['Frequence_interest'] == 1) {
                                                                     echo "hebdomadaire";
-                                                                } 
+                                                                }
                                                                 if ($row['Frequence_interest'] == 2) {
                                                                     echo "mensuel";
-                                                                } 
+                                                                }
                                                                 if ($row['Frequence_interest'] == 3) {
                                                                     echo "trimestriel";
-                                                                } 
+                                                                }
                                                                 if ($row['Frequence_interest'] == 4) {
                                                                     echo "semestriel";
-                                                                } 
+                                                                }
                                                                 if ($row['Frequence_interest'] == 5) {
                                                                     echo "annuel";
-                                                                } 
+                                                                }
                                                                 ?>
-                                                                </td>
+                                                            </td>
 
-                                                            <!--
-                                                            <?php if ($row['Priority_interest'] == 0) { ?>
-
-                                                                <td>
-                                                                    <h5 class="time-title p-0"><?= $row['Priority_interest'] ?></h5>
-                                                                </td>
-                                                            <?php } ?>
-
-                                                            <?php if ($row['Priority_interest'] == 1) { ?>
-
-                                                                <td class="table-danger">
-                                                                    <h5 class="time-title p-0"><?= $row['Priority_interest'] ?></h5>
-                                                                </td>
-                                                            <?php } ?>
-                                                            <?php if ($row['Priority_interest'] == 2) { ?>
-
-                                                                <td class="table-warning">
-                                                                    <h5 class="time-title p-0"><?= $row['Priority_interest'] ?></h5>
-                                                                </td>
-                                                            <?php } ?> <?php if ($row['Priority_interest'] == 3) { ?>
-
-                                                                <td class="table-light">
-                                                                    <h5 class="time-title p-0"><?= $row['Priority_interest'] ?></h5>
-                                                                </td>
-                                                            <?php } ?> <?php if ($row['Priority_interest'] == 4) { ?>
-
-                                                                <td class="table-primary">
-                                                                    <h5 class="time-title p-0"><?= $row['Priority_interest'] ?></h5>
-                                                                </td>
-                                                            <?php } ?> <?php if ($row['Priority_interest'] == 5) { ?>
-
-                                                                <td class="table-success">
-                                                                    <h5 class="time-title p-0"><?= $row['Priority_interest'] ?></h5>
-                                                                </td>
-                                                            <?php } ?>
-                                                            -->
 
                                                             <td class="text-right">
                                                                 <div class="dropdown dropdown-action">

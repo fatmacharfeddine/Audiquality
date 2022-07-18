@@ -66,7 +66,9 @@ class Minterest extends CI_Model
         //     $this->db->join('auditquality_interest_group', 'auditquality_interest_group.ID_interest_group = auditquality_interest.ID_interest_group', 'left');
 
         //    $this->db->where('auditquality_interest.ID_interest_group', $ID_interest_group);
-        $this->db->order_by('auditquality_interest.Priority_interest','Asc');
+        $this->db->order_by('auditquality_interest.Priority_interest', 'Asc');
+        $this->db->order_by('auditquality_interest.ID_interest', 'Desc');
+
         $this->db->limit(9, $page);
         $query = $this->db->get();
         if ($query->num_rows() == 0) {

@@ -19,7 +19,7 @@ class Mprocessus extends CI_Model
         $this->db->select('*');
         $this->db->from('auditquality_processus_interaction');
         $this->db->where('auditquality_processus_interaction.ID_processus', $ID_processus);
-       // $this->db->where('auditquality_processus.ID_company =', $this->data['ID_company']);
+        // $this->db->where('auditquality_processus.ID_company =', $this->data['ID_company']);
 
         $query = $this->db->get();
         return $query->result_array();
@@ -29,9 +29,9 @@ class Mprocessus extends CI_Model
         $this->db->select('count(*) nb');
         $this->db->from('auditquality_processus_interaction');
         $this->db->where('auditquality_processus_interaction.ID_processus', $ID_processus);
-        
-      //  $this->db->where('auditquality_processus.ID_company =', $this->data['ID_company']);
-        
+
+        //  $this->db->where('auditquality_processus.ID_company =', $this->data['ID_company']);
+
         $query = $this->db->get();
         return ceil($query->result_array()[0]['nb'] / 9);
     }
@@ -53,6 +53,48 @@ class Mprocessus extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }
+    function get_processus_Id_name()
+    {
+        $this->db->select('ID_processus,Title_processus');
+        $this->db->from('auditquality_processus');
+        $this->db->join('auditquality_employee', 'auditquality_employee.ID_employee = auditquality_processus.ID_Responsable');
+        $this->db->join('auditquality_category', 'auditquality_category.processcategory = auditquality_processus.processcategory');
+        $this->db->where('auditquality_processus.ID_company =', $this->data['ID_company']);
+
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    function get_processus_nb()
+    {
+        $this->db->select('count(*) nb');
+        $this->db->from('auditquality_processus');
+        $this->db->join('auditquality_employee', 'auditquality_employee.ID_employee = auditquality_processus.ID_Responsable');
+        $this->db->join('auditquality_category', 'auditquality_category.processcategory = auditquality_processus.processcategory');
+        $this->db->where('auditquality_processus.ID_company =', $this->session->userdata('ID_company'));
+
+        $query = $this->db->get();
+        return ceil($query->result_array()[0]['nb']);
+    }
+
+
+    function get_interact_Id_name($ID_processus, $ID_processus_interaction)
+    {
+        $this->db->select('ID_processus,Title_processus');
+        $this->db->from('auditquality_processus_interaction');
+     //   $this->db->join('auditquality_employee', 'auditquality_employee.ID_employee = auditquality_processus.ID_Responsable');
+     //   $this->db->join('auditquality_category', 'auditquality_category.processcategory = auditquality_processus.processcategory');
+     $this->db->where('auditquality_processus.ID_processus =', $ID_processus);
+     $this->db->where('auditquality_processus.ID_processus_interaction =', $ID_processus_interaction);
+  //   $this->db->where('auditquality_processus.ID_company =', $this->session->userdata('ID_company'));
+
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+
+
+
     function get_processus_risk($ID_risk)
     {
         $this->db->select('*');
@@ -60,7 +102,7 @@ class Mprocessus extends CI_Model
         $this->db->join('auditquality_employee', 'auditquality_employee.ID_employee = auditquality_processus.ID_Responsable');
         $this->db->join('auditquality_category', 'auditquality_category.processcategory = auditquality_processus.processcategory');
         $this->db->where('auditquality_processus.ID_company =', $this->data['ID_company']);
-        $this->db->where('auditquality_processus.ID_processus not in (select ID_processus from auditquality_risk where ID_risk = '.$ID_risk.')');
+        $this->db->where('auditquality_processus.ID_processus not in (select ID_processus from auditquality_risk where ID_risk = ' . $ID_risk . ')');
 
         $query = $this->db->get();
         return $query->result_array();
@@ -73,7 +115,7 @@ class Mprocessus extends CI_Model
         $this->db->join('auditquality_category', 'auditquality_category.processcategory = auditquality_processus.processcategory');
         $this->db->where('auditquality_processus.ID_company =', $this->data['ID_company']);
 
-       // $this->db->limit(9, $page);
+        // $this->db->limit(9, $page);
         $query = $this->db->get();
         if ($query->num_rows() == 0) {
             return False;
@@ -190,8 +232,8 @@ class Mprocessus extends CI_Model
     {
         $this->db->select('auditquality_processus.*');
         $this->db->from('auditquality_processus');
-        $this->db->join('auditquality_processus_interaction', 'auditquality_processus_interaction.ID_processus = auditquality_processus.ID_processus');
-        $this->db->where('auditquality_processus.ID_company', $ID_company);
+        $this->db->join('auditquality_processus_interaction', 'auditquality_processus_interaction.ID_processus = auditquality_processus.ID_processus', 'left');
+        //  $this->db->where('auditquality_processus.ID_company', $ID_company);
 
         $query = $this->db->get();
         if ($query->num_rows() == 0) {
@@ -204,8 +246,8 @@ class Mprocessus extends CI_Model
     {
         $this->db->select('auditquality_processus.*');
         $this->db->from('auditquality_processus');
-        $this->db->join('auditquality_processus_interaction', 'auditquality_processus_interaction.ID_processus_interaction = auditquality_processus.ID_processus');
-        $this->db->where('auditquality_processus.ID_company', $ID_company);
+        $this->db->join('auditquality_processus_interaction', 'auditquality_processus_interaction.ID_processus_interaction = auditquality_processus.ID_processus', 'left');
+        //  $this->db->where('auditquality_processus.ID_company', $ID_company);
 
         $query = $this->db->get();
         if ($query->num_rows() == 0) {
@@ -222,7 +264,7 @@ class Mprocessus extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('auditquality_doc_type');
-      
+
         $query = $this->db->get();
         return $query->result_array();
     }

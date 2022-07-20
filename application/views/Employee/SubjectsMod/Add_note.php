@@ -47,10 +47,10 @@
                                                         ?>
                                                             <input type="hidden" name="ID_note" value="<?php echo $ID_note ?>">
                                                         <?php } ?>
-                                                        <textarea type="text" name="Text_note" value="<?php if (isset($Text_note)) {
+                                                        <input type="number" name="Text_note" value="<?php if (isset($Text_note)) {
                                                                                                             echo $Text_note;
-                                                                                                        } ?>" placeholder="Note" class="form-control">
-                                                                                                        </textarea>
+                                                                                                        } ?>" placeholder="Note" class="form-control" min="0">
+                                                        </input>
 
                                                     </div>
                                                 </div>

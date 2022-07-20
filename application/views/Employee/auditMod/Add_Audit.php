@@ -222,7 +222,7 @@
 
 
                                         <div class="text-right">
-                                            <button id="btn_add" type="button" class="btn btn-primary">Confirmer</button>
+                                            <button id="btn_add" type="submit" class="btn btn-primary">Confirmer</button>
                                         </div>
                                     </form>
 

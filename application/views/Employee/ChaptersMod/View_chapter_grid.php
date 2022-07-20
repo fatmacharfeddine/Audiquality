@@ -87,7 +87,7 @@
                                                                                             <button class="btn btn-primary btn-primary-three float-right" style="width: 38px;"><i class="fa fa-pencil m-r-5"></i></button>
                                                                                         </a>
                                                                                         </br></br>
-                                                                                        <a href="<?php echo base_url() ?>/Employee_Account/Delete_response?ID_chapter=<?php echo $ID_chapter ?>&ID_response=<?php echo $row3['ID_response'] ?>&ID_grid=<?php echo $row3['ID_grid'] ?>">
+                                                                                        <a href="<?php echo base_url() ?>/Employee_Account/Delete_response?ID_chapter=<?php echo $ID_chapter ?>&ID_response=<?php echo $row3['ID_response'] ?>&ID_grid=<?php echo $row3['ID_grid'] ?>" onclick="return confirm('Êtes-vous sûr?');">
                                                                                             <button class="btn btn-primary btn-primary-four float-right" style="width: 38px;"><i class="fa fa-trash-o m-r-5"></i></button>
                                                                                         </a>
                                                                                     </td>
@@ -123,7 +123,7 @@
                                                                                 <button class="btn btn-primary btn-primary-three float-right" style="width: 38px;"><i class="fa fa-pencil m-r-5"></i></button>
                                                                             </a>
                                                                             </br></br>
-                                                                            <a href="<?php echo base_url() ?>/Employee_Account/Delete_note?ID_note=<?php echo $row2['ID_note'] ?>&ID_grid=<?php echo $ID_grid ?>&ID_chapter=<?php echo $ID_chapter ?>">
+                                                                            <a href="<?php echo base_url() ?>/Employee_Account/Delete_note?ID_note=<?php echo $row2['ID_note'] ?>&ID_grid=<?php echo $ID_grid ?>&ID_chapter=<?php echo $ID_chapter ?>" onclick="return confirm('Êtes-vous sûr?');">
                                                                                 <button class="btn btn-primary btn-primary-four float-right" style="width: 38px;"><i class="fa fa-trash-o m-r-5"></i></button>
                                                                             </a>
                                                                         </td>

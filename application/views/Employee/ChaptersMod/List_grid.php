@@ -36,7 +36,7 @@
                                         <div class="dropdown profile-action">
                                             <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                                             <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(23px, 27px, 0px);">
-                                                <a class="dropdown-item" href="<?php echo base_url(); ?>Employee_Account/Delete_grid?ID_grid=<?php echo $row['ID_grid'] ?>"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                                <a class="dropdown-item" href="<?php echo base_url(); ?>Employee_Account/Delete_grid?ID_grid=<?php echo $row['ID_grid'] ?>" onclick="return confirm('Êtes-vous sûr?');"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                                             </div>
                                         </div>
                                     </div>

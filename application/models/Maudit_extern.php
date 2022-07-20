@@ -82,7 +82,7 @@ class Maudit_extern extends CI_Model {
         
         $this->db->where('ID_audit_extern', $ID_audit_extern);
         $this->db->join('auditquality_employee' ,'auditquality_employee.ID_employee=auditquality_processus.ID_Responsable');
-        $this->db->order_by('auditquality_survey_extern.ID_processus'); 
+        $this->db->order_by('auditquality_survey_extern.ID_processus','desc'); 
 
 
         $query=$this->db->get();

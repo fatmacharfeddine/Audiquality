@@ -2382,7 +2382,7 @@ class Employee_Account extends CI_Controller
 
 			//echo ($this->data['ID_chapter']);
 			//die();
-			return redirect(base_url() . 'Employee_Account/View_chapter?ID_chapter=' . $this->data['ID_chapter'] . '&ID_grid=' . $this->data['ID_grid']);
+			return redirect(base_url() . 'Employee_Account/view_chapter_grid?ID_chapter=' . $this->data['ID_chapter'] . '&ID_grid=' . $this->data['ID_grid']);
 			/*************************Access Verif************************/
 		} else {
 			$this->load->view('Employee/No_access.php', $this->data);
@@ -2424,7 +2424,7 @@ class Employee_Account extends CI_Controller
 				//echo $this->data['ID_chapter'];
 				//die();
 			}
-			return redirect(base_url() . 'Employee_Account/View_chapter?ID_chapter=' . $this->data['ID_chapter'] . '&ID_grid=' . $this->data['ID_grid']);
+			return redirect(base_url() . 'Employee_Account/view_chapter_grid?ID_chapter=' . $this->data['ID_chapter'] . '&ID_grid=' . $this->data['ID_grid']);
 			/*************************Access Verif************************/
 		} else {
 			$this->load->view('Employee/No_access.php', $this->data);
@@ -9370,6 +9370,7 @@ class Employee_Account extends CI_Controller
 		$this->load->view('Employee/Footer');
 		/*********************End Access Verif************************/
 	}
+
 	/*********submit add les info audit description/objectif/domaine/methodologie/evaluation */
 	public function submit_add_steps()
 	{
@@ -9728,8 +9729,6 @@ class Employee_Account extends CI_Controller
 
 		if ($this->test_verif_edit == 1) {
 			/*********************End Access Verif************************/
-
-
 			$this->load->view('Employee/auditMod/Add_Plan.php', $this->data);
 			/*************************Access Verif************************/
 		} else {
@@ -9786,7 +9785,32 @@ class Employee_Account extends CI_Controller
 		$this->load->view('Employee/Footer');
 		/*********************End Access Verif************************/
 	}
+	public function submit_delete_plan()
+	{
+		$this->commonData();
+		/*************************Access Verif************************/
+		$this->function_type = "edit";
+		$current_function = "List_audit";
+		$this->commonAccess($current_function);
+		$this->load->view('Employee/Header');
+		$this->load->view('Employee/Menu', $this->data);
 
+		if ($this->test_verif_edit == 1) {
+			/*********************End Access Verif************************/
+			if ($_GET) {
+
+				$this->data['ID_audit_plan'] = $_GET['ID_audit_plan'];
+				$this->Maudit->delete_Plan($this->data['ID_audit_plan']);
+			}
+
+			return redirect(base_url() . 'Employee_Account/List_audit');
+			/*************************Access Verif************************/
+		} else {
+			$this->load->view('Employee/No_access.php', $this->data);
+		}
+		$this->load->view('Employee/Footer');
+		/*********************End Access Verif************************/
+	}
 	/******Crud processus ******/
 	/******load view list process *******/
 	public function List_Processus()

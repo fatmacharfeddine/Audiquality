@@ -41,16 +41,16 @@
                                                 <input type="hidden" name="ID_chapter" value="<?php echo $ID_chapter ?>">
 
                                                 <div class="form-group row">
-                                                    <label class="col-form-label col-md-3">Note</label>
+                                                    <label class="col-form-label col-md-3">Commentaire</label>
                                                     <div class="col-md-9">
                                                         <?php if (isset($ID_note)) {
                                                         ?>
                                                             <input type="hidden" name="ID_note" value="<?php echo $ID_note ?>">
                                                         <?php } ?>
-                                                        <input type="number" name="Text_note" value="<?php if (isset($Text_note)) {
+                                                        <textarea  name="Text_note"  placeholder="Note" class="form-control" min="0"><?php if (isset($Text_note)) {
                                                                                                             echo $Text_note;
-                                                                                                        } ?>" placeholder="Note" class="form-control" min="0">
-                                                        </input>
+                                                                                                        } ?>
+                                                        </textarea>
 
                                                     </div>
                                                 </div>

@@ -134,7 +134,7 @@
                                                         </table>
                                                         <div class="text-center m-t-20">
                                                             <a href="<?php echo base_url() ?>/Employee_Account/Form_add_note?ID_chapter=<?php echo $ID_chapter ?>&ID_subject=<?php echo $row['ID_subject'] ?>&ID_grid=<?php echo $ID_grid ?>">
-                                                                <button class="btn btn-primary submit-btn" style="background-color: #ffbc35;font-size: 12px;" type="button">New Note</button>
+                                                                <button class="btn btn-primary submit-btn" style="background-color: #ffbc35;font-size: 12px;" type="button">Nouveau commentaire</button>
                                                             </a>
                                                         </div>
                                                     </td>

@@ -24,6 +24,8 @@
                                     <ul class="categories">
                                         <li><a href="<?php echo base_url(); ?>Employee_Account/Training_request_director_qse"><i class="fa fa-check-circle-o"></i> <span>Trainings Requests</span></a></li>
                                         <li><a href="<?php echo base_url(); ?>Employee_Account/Training_request_qse"><i class="fa fa-check-circle"></i> <span>Trainings Requests by Groups</span></a></li>
+                                        <li><a href="<?php echo base_url(); ?>Employee_Account/Training_request_employee"><i class="fa fa-check-circle"></i> <span>Trainings Requests by Employee</span></a></li>
+
                                     </ul>
                                 </div>
                             </li>

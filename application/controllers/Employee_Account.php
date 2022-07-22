@@ -192,7 +192,7 @@ class Employee_Account extends CI_Controller
 		/*		echo print_r($this->data['access_account']);
 		die();*/
 		$this->data['department_account'] = $this->Memployeeaccount->get_department_by_employee($this->data['ID_connected_employee']);
-	//	$this->data['current_department'] = $this->data['department_account'][0]['ID_department'];
+		//	$this->data['current_department'] = $this->data['department_account'][0]['ID_department'];
 
 		/******************** End Access Menu *******************************/
 
@@ -7435,10 +7435,10 @@ class Employee_Account extends CI_Controller
 				$this->data['nb'] = $this->Mtraining->get_Training_eval_emp_nb_page($year);
 			}
 			$this->data['trainings'] = $this->Mtraining->get_Training_eval_emp_paging($page, $year);
-			/*echo "<pre>";
-			echo print_r($this->data['trainings']);
-			echo "<pre>";
-			die();*/
+			//  echo "<pre>";
+			//  echo print_r($this->data['trainings']);
+			//  echo "<pre>";
+			//  die();
 			$this->data['doc_upload'] = $this->Mtraining->get_doc_upload(1);
 			$this->data['URL_link_document_upload'] = $this->data['doc_upload'][0]['URL_link_document_upload'];
 			$this->data['File_document_upload'] = $this->data['doc_upload'][0]['File_document_upload'];
@@ -7529,14 +7529,14 @@ class Employee_Account extends CI_Controller
 			$this->data['trainings2'] = $this->Mtraining->get_trainings_eval_by_prog2_paging($page, $this->data['ID_training_programm']);
 
 
-			/*	echo "<pre>";
-			echo print_r($this->data['trainings1']);
-			echo "<pre>";
+			// 	echo "<pre>";
+			// echo print_r($this->data['trainings1']);
+			// echo "<pre>";
 
-			echo "<pre>";
-			echo print_r($this->data['trainings2']);
-			echo "<pre>";
-			die();*/
+			// echo "<pre>";
+			// echo print_r($this->data['trainings2']);
+			// echo "<pre>";
+			// die();
 
 
 			$this->load->view('Employee/trainingsMod/List_trainings_eval_by_prog.php', $this->data);
@@ -8042,9 +8042,6 @@ class Employee_Account extends CI_Controller
 		$this->commonAccess($current_function);
 		$this->load->view('Employee/Header');
 		$this->load->view('Employee/Menu', $this->data);
-
-
-
 
 
 		if ($this->test_verif_edit == 1) {
@@ -8591,22 +8588,42 @@ class Employee_Account extends CI_Controller
 					$this->data['Name_access_group'] = $this->data['access_group'][0]['Name_access_group'];
 					//$this->data_post['position'] = $this->Memployee_new->get_positions_by_department($this->data['ID_department']);
 				}
-				$this->data_employee = array(
-					'Name_employee' => $_POST['Name_employee'],
-					'Lastname_employee' => $_POST['Lastname_employee'],
-					'Phone_employee' => $_POST['Phone_employee'],
-					'Email_employee' => $_POST['Email_employee'],
-					'File_integration_employee' => $insertfile,
-					'Login_employee' => $_POST['Login_employee'],
-					'Password_employee' => md5($_POST['Password_employee']),
-					'Num_pwd_employee' => strlen($_POST['Password_employee']),
-					'ID_department_post' => '0',
-					'ID_access_group' => $_POST['ID_access_group'],
-				);
+
+
 				//echo $this->data_employee['Num_pwd_employee'];
 				//echo $_POST['Password_employee'];
 				//die();
-				$this->data['department_post'] = $this->Memployee_new->add_employee($this->data_employee);
+				if (isset($_POST['ID_employee'])) {
+				//	echo $_POST['ID_employee'];
+				//	die();
+					$this->data_employee_edit = array(
+						'Name_employee' => $_POST['Name_employee'],
+						'Lastname_employee' => $_POST['Lastname_employee'],
+						'Phone_employee' => $_POST['Phone_employee'],
+						//'Email_employee' => $_POST['Email_employee'],
+						'File_integration_employee' => $insertfile,
+						//'Login_employee' => $_POST['Login_employee'],
+						//'Password_employee' => md5($_POST['Password_employee']),
+						//'Num_pwd_employee' => strlen($_POST['Password_employee']),
+						'ID_department_post' => '0',
+						'ID_access_group' => $_POST['ID_access_group'],
+					);
+					$this->data['department_post'] = $this->Memployee_new->edit_employee($_POST['ID_employee'], $this->data_employee_edit);
+				} else {
+					$this->data_employee_add = array(
+						'Name_employee' => $_POST['Name_employee'],
+						'Lastname_employee' => $_POST['Lastname_employee'],
+						'Phone_employee' => $_POST['Phone_employee'],
+						'Email_employee' => $_POST['Email_employee'],
+						'File_integration_employee' => $insertfile,
+						'Login_employee' => $_POST['Login_employee'],
+						'Password_employee' => md5($_POST['Password_employee']),
+						'Num_pwd_employee' => strlen($_POST['Password_employee']),
+						'ID_department_post' => '0',
+						'ID_access_group' => $_POST['ID_access_group'],
+					);
+					$this->data['department_post'] = $this->Memployee_new->add_employee($this->data_employee_add);
+				}
 			}
 			return redirect(base_url() . 'Employee_Account/List_employee_new');
 			/*************************Access Verif************************/
@@ -8761,8 +8778,8 @@ class Employee_Account extends CI_Controller
 				$this->data['Phone_employee'] = $this->data['employee'][0]['Phone_employee'];
 				$this->data['Email_employee'] = $this->data['employee'][0]['Email_employee'];
 				$this->data['Login_employee'] = $this->data['employee'][0]['Login_employee'];
-			//	$this->data['Password_employee'] = $this->data['employee'][0]['Password_employee'];
-			//	$this->data['Num_pwd_employee'] = $this->data['employee'][0]['Num_pwd_employee'];
+				//	$this->data['Password_employee'] = $this->data['employee'][0]['Password_employee'];
+				//	$this->data['Num_pwd_employee'] = $this->data['employee'][0]['Num_pwd_employee'];
 				//	$this->data['ID_department_post'] = $this->data['employee'][0]['ID_department_post'];
 				//	$this->data['Name_post'] = $this->data['employee'][0]['Name_post'];
 				$this->data['ID_access_group'] = $this->data['employee'][0]['ID_access_group'];

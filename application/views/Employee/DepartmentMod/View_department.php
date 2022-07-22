@@ -116,7 +116,7 @@
 
                                                             <div class="col-md-6 timeline-content">
                                                                 <a href="" class="name"><?php echo 'Position ' . $count . ' : ' . $row['Name_post']; ?></a>
-                                                                <div><?php echo $row['Description_post']; ?></div>
+                                                                <!-- <div><?php echo $row['Description_post']; ?></div> -->
                                                             </div>
                                                             <div class="col-md-2">
                                                                 <a href="<?php echo base_url(); ?>Employee_Account/List_departments_employee?ID_department_post=<?php echo $row['ID_department_post'] ?>" class="btn btn-outline-primary take-btn">Employees</a>

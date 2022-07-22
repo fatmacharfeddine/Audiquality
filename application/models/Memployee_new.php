@@ -76,7 +76,7 @@ class Memployee_new extends CI_Model
     }
 
 
-    function edit_employee($data, $ID_employee)
+    function edit_employee($ID_employee, $data)
     {
         $this->db->where('auditquality_employee.ID_employee', $ID_employee);
         if ($this->db->update('auditquality_employee', $data)) {
@@ -178,7 +178,7 @@ class Memployee_new extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('auditquality_access_group');
-        $this->db->join('auditquality_department', 'auditquality_department.ID_company = auditquality_access_group.ID_company');
+      //  $this->db->join('auditquality_department', 'auditquality_department.ID_company = auditquality_access_group.ID_company');
         //$this->db->where('auditquality_department.ID_department', $ID_department);
         $query = $this->db->get();
         return $query->result_array();

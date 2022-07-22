@@ -266,6 +266,40 @@ class Mtraining extends CI_Model
     }
 
 
+    // function get_training_eval_emp_paging($page, $year)
+    // {
+    //     $this->db->select('auditquality_training_programm.ID_training_programm,
+    //                         auditquality_training_programm.Title_training_programm,
+    //                         auditquality_training_programm.Startdate_training_programm,
+    //                         auditquality_training_programm.Enddate_training_programm,
+    //                         auditquality_training_programm.Hours_training_programm,
+    //                         auditquality_training_programm.Budget_training_programm,
+    //                         auditquality_organization.Name_organization,
+    //                         auditquality_training_programm.Year_training_programm,
+    //                         auditquality_training_evaluation_emp.File_training_evaluation_emp,
+    //                         auditquality_training_evaluation_emp.ID_training_evaluation_emp,
+    //                         auditquality_training_evaluation_emp.Objectif_training_evaluation_emp');
+
+    //     //$this->db->join('auditquality_company', 'auditquality_company.ID_company = auditquality_training_programm.ID_company');
+    //     $this->db->join('auditquality_organization', 'auditquality_organization.ID_organization = auditquality_training_programm.ID_organization', 'left');
+    //     $this->db->join('auditquality_training_evaluation_emp', 'auditquality_training_evaluation_emp.ID_training_programm = auditquality_training_programm.ID_training_programm', 'left');
+
+    //     $this->db->from('auditquality_training_programm');
+    //     $this->db->where('auditquality_training_programm.Year_training_programm', $year);
+    //     $this->db->where('auditquality_training_programm.ID_training_group IN (SELECT auditquality_training_group_employee.ID_training_group FROM `auditquality_skills_employee` Join auditquality_training_group_employee ON auditquality_training_group_employee.ID_skill_employee = auditquality_skills_employee.ID_skill_employee where auditquality_skills_employee.ID_employee = ' . $this->session->userdata('ID_employee') . ')');
+    //     $this->db->or_where('auditquality_training_programm.ID_training_group_request IN (SELECT auditquality_training_group_employee_request.ID_training_group_request FROM auditquality_training_group_employee_request where auditquality_training_group_employee_request.ID_employee = ' . $this->session->userdata('ID_employee') . ')');
+    //     $this->db->where('auditquality_training_evaluation_emp.ID_employee', $this->session->userdata('ID_employee'));
+    //     $this->db->group_by("auditquality_training_programm.ID_training_programm");
+
+    //     $this->db->limit(9, $page);
+    //     $query = $this->db->get();
+    //     if ($query->num_rows() == 0) {
+    //         return False;
+    //     } else {
+    //         return $query->result_array();
+    //     }
+    // }
+
     function get_training_eval_emp_paging($page, $year)
     {
         $this->db->select('auditquality_training_programm.ID_training_programm,
@@ -288,7 +322,7 @@ class Mtraining extends CI_Model
         $this->db->where('auditquality_training_programm.Year_training_programm', $year);
         $this->db->where('auditquality_training_programm.ID_training_group IN (SELECT auditquality_training_group_employee.ID_training_group FROM `auditquality_skills_employee` Join auditquality_training_group_employee ON auditquality_training_group_employee.ID_skill_employee = auditquality_skills_employee.ID_skill_employee where auditquality_skills_employee.ID_employee = ' . $this->session->userdata('ID_employee') . ')');
         $this->db->or_where('auditquality_training_programm.ID_training_group_request IN (SELECT auditquality_training_group_employee_request.ID_training_group_request FROM auditquality_training_group_employee_request where auditquality_training_group_employee_request.ID_employee = ' . $this->session->userdata('ID_employee') . ')');
-        $this->db->where('auditquality_training_evaluation_emp.ID_employee', $this->session->userdata('ID_employee'));
+        $this->db->or_where('auditquality_training_evaluation_emp.ID_employee', $this->session->userdata('ID_employee'));
         $this->db->group_by("auditquality_training_programm.ID_training_programm");
 
         $this->db->limit(9, $page);
@@ -300,6 +334,7 @@ class Mtraining extends CI_Model
         }
     }
 
+    /*********************** */
     function get_training_eval_emp_nb_page($year)
     {
         $this->db->select('count(*) nb');
@@ -311,7 +346,7 @@ class Mtraining extends CI_Model
         $this->db->where('auditquality_training_programm.Year_training_programm', $year);
         $this->db->where('auditquality_training_programm.ID_training_group IN (SELECT auditquality_training_group_employee.ID_training_group FROM `auditquality_skills_employee` Join auditquality_training_group_employee ON auditquality_training_group_employee.ID_skill_employee = auditquality_skills_employee.ID_skill_employee where auditquality_skills_employee.ID_employee = ' . $this->session->userdata('ID_employee') . ')');
         $this->db->or_where('auditquality_training_programm.ID_training_group_request IN (SELECT auditquality_training_group_employee_request.ID_training_group_request FROM auditquality_training_group_employee_request where auditquality_training_group_employee_request.ID_employee = ' . $this->session->userdata('ID_employee') . ')');
-        $this->db->where('auditquality_training_evaluation_emp.ID_employee', $this->session->userdata('ID_employee'));
+        $this->db->or_where('auditquality_training_evaluation_emp.ID_employee', $this->session->userdata('ID_employee'));
         $this->db->group_by("auditquality_training_programm.ID_training_programm");
 
         $query = $this->db->get();

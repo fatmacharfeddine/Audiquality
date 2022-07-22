@@ -14,7 +14,7 @@
                     <h4 class="page-title"></h4>
                 </div>
                 <div class="col-sm-8 col-9 text-right m-b-20">
-                    <a href="<?php echo base_url() ?>/Employee_Account/" class="btn btn-primary btn-rounded float-right">
+                    <a href="<?php echo base_url() ?>/Employee_Account/Training_request_qse" class="btn btn-primary btn-rounded float-right">
                         << Back </a>
                 </div>
             </div>

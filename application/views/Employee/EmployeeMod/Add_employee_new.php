@@ -81,15 +81,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="form-group row">
-                                                <label class="col-form-label col-md-3">Email employee</label>
-                                                <div class="col-md-9">
-                                                    <input type="text" name="Email_employee" value="<?php if (isset($Email_employee)) {
-                                                                                                        echo $Email_employee;
-                                                                                                    } ?>" placeholder="Email" class="form-control">
 
-                                                </div>
-                                            </div>
                                             <div class="form-group row">
                                                 <label class="col-form-label col-md-3">File</label>
                                                 <div class="col-md-9">
@@ -104,28 +96,39 @@
 
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <label class="col-form-label col-md-3">Login employee</label>
-                                                <div class="col-md-9">
-                                                    <input type="text" name="Login_employee" value="<?php if (isset($Login_employee)) {
-                                                                                                        echo $Login_employee;
-                                                                                                    } ?>" placeholder="Login" class="form-control">
 
+                                            <?php if (!isset($ID_employee)) { ?>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-md-3">Email employee</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" name="Email_employee" value="<?php if (isset($Email_employee)) {
+                                                                                                            echo $Email_employee;
+                                                                                                        } ?>" placeholder="Email" class="form-control">
+
+                                                    </div>
                                                 </div>
-                                            </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-md-3">Login employee</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" name="Login_employee" value="<?php if (isset($Login_employee)) {
+                                                                                                            echo $Login_employee;
+                                                                                                        } ?>" placeholder="Login" class="form-control">
 
-                                            <div class="form-group row">
-                                                <label class="col-form-label col-md-3">Password employee</label>
-                                                <div class="col-md-9">
-                                                    <input type="password" name="Password_employee" value="<?php if (isset($Password_employee)) {
-                                                                                                                echo $Password_employee;
-                                                                                                            } ?>" placeholder="Password" class="form-control">
-
+                                                    </div>
                                                 </div>
-                                            </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-md-3">Password employee</label>
+                                                    <div class="col-md-9">
+                                                        <input type="password" name="Password_employee" value="<?php if (isset($Password_employee)) {
+                                                                                                                    echo $Password_employee;
+                                                                                                                } ?>" placeholder="Password" class="form-control">
+
+                                                    </div>
+                                                </div>
 
 
-
+                                            <?php } ?>
                                             <div class="form-group row">
                                                 <label class="col-form-label col-md-3">Access group</label>
                                                 <div class="col-md-9">

@@ -61,8 +61,8 @@
                                                                 if ($row['Validatedby_training_request'] == 0) {
                                                                 ?>
                                                                     &nbsp;&nbsp;&nbsp;&nbsp;
-                                                                    <a href="<?php echo base_url(); ?>Employee_Account/Training_request_director?ID_training_request=<?php echo $row['ID_training_request'] ?>&action=accept" class="btn btn-outline-primary take-btn">Accept</a>
-                                                                    <a href="<?php echo base_url(); ?>Employee_Account/Training_request_director?ID_training_request=<?php echo $row['ID_training_request'] ?>&action=refuse" class="btn btn-outline-primary take-btn">Refuse</a>
+                                                                    <a href="<?php echo base_url(); ?>Employee_Account/Training_request_director_qse?ID_training_request=<?php echo $row['ID_training_request'] ?>&action=accept" class="btn btn-outline-primary take-btn">Accept</a>
+                                                                    <a href="<?php echo base_url(); ?>Employee_Account/Training_request_director_qse?ID_training_request=<?php echo $row['ID_training_request'] ?>&action=refuse" class="btn btn-outline-primary take-btn">Refuse</a>
                                                                     <?php } else if ($row['Validatedby_training_request'] != 0) {
                                                                     if ($row['Refusedstatus_training_request'] == 1) { ?>
                                                                         &nbsp;&nbsp;&nbsp;&nbsp;

@@ -309,13 +309,14 @@ class Mrecuitment extends CI_Model
 
     function get_recuitment_eval_emp_nb_page()
     {
-        $this->db->select('count(*) nb');
+        $this->db->select('*');
         $this->db->from('auditquality_recuitment_programm');
         $this->db->join('auditquality_employee', 'auditquality_employee.ID_employee = auditquality_recuitment_programm.ID_employee');
 
         $this->db->group_by("auditquality_recuitment_programm.ID_recuitment_programm");
         $query = $this->db->get();
-        return ceil($query->result_array()[0]['nb'] / 9);
+        //return ceil($query->result_array()[0]['nb'] / 9);
+        return ceil($query->num_rows() / 9);
     }
 
     function delete_recuitment_evaluation_emp($ID_recuitment_evaluation_emp)

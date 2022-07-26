@@ -199,7 +199,7 @@ class MContexte extends CI_Model
         $this->db->from('auditquality_enjeu');
         $this->db->where('auditquality_enjeu.ID_enjeu', $id);
         $this->db->where('status =', 0);
-        $this->db->order_by('auditquality_enjeu.Priority_enjeu');
+        $this->db->order_by('auditquality_enjeu.Priority_enjeu','desc');
 
         $query = $this->db->get();
         return $query->result_array();
@@ -228,7 +228,7 @@ class MContexte extends CI_Model
         $this->db->from('auditquality_enjeu');
         $this->db->join('auditquality_swot', 'auditquality_swot.ID_swot = auditquality_enjeu.ID_swot', 'left');
         $this->db->where('auditquality_enjeu.ID_swot =', $id);
-        $this->db->order_by('auditquality_enjeu.Priority_enjeu');
+        $this->db->order_by('auditquality_enjeu.Priority_enjeu','desc');
 
         $query = $this->db->get();
         return $query->result_array();
@@ -239,7 +239,7 @@ class MContexte extends CI_Model
         $this->db->from('auditquality_enjeu');
         $this->db->join('auditquality_pestle', 'auditquality_pestle.ID_pestle = auditquality_enjeu.ID_pestle', 'left');
         $this->db->where('auditquality_enjeu.ID_pestle =', $id);
-        $this->db->order_by('auditquality_enjeu.Priority_enjeu');
+        $this->db->order_by('auditquality_enjeu.Priority_enjeu','desc');
 
         $query = $this->db->get();
         return $query->result_array();
@@ -250,7 +250,7 @@ class MContexte extends CI_Model
         $this->db->from('auditquality_enjeu');
         $this->db->join('auditquality_swot', 'auditquality_swot.ID_swot = auditquality_enjeu.ID_swot', 'left');
         $this->db->where('auditquality_enjeu.ID_swot =', NULL);
-        $this->db->order_by('auditquality_enjeu.Priority_enjeu');
+        $this->db->order_by('auditquality_enjeu.Priority_enjeu','desc');
 
 
         $query = $this->db->get();
@@ -262,7 +262,7 @@ class MContexte extends CI_Model
         $this->db->from('auditquality_enjeu');
         $this->db->join('auditquality_pestle', 'auditquality_pestle.ID_pestle = auditquality_enjeu.ID_pestle', 'left');
         $this->db->where('auditquality_enjeu.ID_pestle =', NULL);
-        $this->db->order_by('auditquality_enjeu.Priority_enjeu');
+        $this->db->order_by('auditquality_enjeu.Priority_enjeu','desc');
 
 
         $query = $this->db->get();

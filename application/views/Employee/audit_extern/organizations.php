@@ -51,7 +51,7 @@
 												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
 												<div class="dropdown-menu dropdown-menu-right">
 													<a class="dropdown-item" href="<?php echo base_url() ?>Employee_Account/form_edit_organization?ID_organization=<?php echo $row['ID_organization'] ?>"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-													<a class="dropdown-item" href="<?php echo site_url ('/Employee_Account/delete_audit/') , $row['ID_organization'] ?>"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+													<a class="dropdown-item" href="<?php echo site_url ('/Employee_Account/delete_audit/') , $row['ID_organization'] ?>" onclick="return confirm('Êtes-vous sûr?');"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
 												</div>
 											</div>
 										</td>

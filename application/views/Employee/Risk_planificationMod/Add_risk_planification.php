@@ -63,7 +63,7 @@
                                                     <div class="col-md-9">
 
                                                         <input type="date" name="Date_risk_planification" value="<?php if (isset($Date_risk_planification)) {
-                                                                                                                        echo $Date_risk_planification;
+                                                                                                                   echo    date('Y-m-d',strtotime($Date_risk_planification));
                                                                                                                     } ?>" placeholder="<?php if (isset($Date_risk_planification)) {
                                                                                                                                             echo $Date_risk_planification;
                                                                                                                                         } ?>" class="form-control">
@@ -73,13 +73,17 @@
 
                                                 <div class="form-group">
                                                     <label class="col-form-label col-md-12">Argumentation</label>
-                                                    <textarea cols="30" rows="4" class="form-control" name="Argumentation_risk_planification" id="summernote"></textarea>
+                                                    <textarea cols="30" rows="4" class="form-control" name="Argumentation_risk_planification" id="summernote"><?php if (isset($Argumentation_risk_planification)) {
+                                                                                                                        echo $Argumentation_risk_planification;
+                                                                                                                    } ?></textarea>
                                                 </div>
 
 
                                                 <div class="form-group">
                                                     <label class="col-form-label col-md-12">Risque de modification</label>
-                                                    <textarea cols="30" rows="4" class="form-control" name="Modification_risk_planification" id="summernote2"></textarea>
+                                                    <textarea cols="30" rows="4" class="form-control" name="Modification_risk_planification" id="summernote2"><?php if (isset($Modification_risk_planification)) {
+                                                                                                                        echo $Modification_risk_planification;
+                                                                                                                    } ?></textarea>
                                                 </div>
 
                                             </div>

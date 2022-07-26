@@ -42,8 +42,8 @@
                                                     <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 30px;">Candidat</th>
                                                     <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 30px;">Date Evaluation</th>
 
-                                                    <th class="text-center" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 30px;">Evaluateur</th>
-                                                    <th class="text-center" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 30px;">File</th>
+                                                    <th class="text-center" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 30px;text-align: left !important;">Evaluateur</th>
+                                                    <th class="text-center" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 30px;text-align: left !important;">File</th>
 
                                                     <th class="text-center" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 30px;"></th>
 
@@ -67,13 +67,13 @@
                                                                 <td><?= $row['Name_Candidat'] ?></td>
                                                                 <td><?= $row['Date_recuitment_programm'] ?></td>
                                                                 <td><?= $row['Name_employee'] . ' ' . $row['Lastname_employee'] ?></td>
-                                                                <td><a href="<?php echo base_url()?>uploads/Document_upload_rec/<?= $row['File_recuitment_programm'] ?>">Open File</a></td>
+                                                                <td><a href="<?php echo base_url() ?>uploads/Document_upload_rec/<?= $row['File_recuitment_programm'] ?>">Open File</a></td>
                                                                 <td class="text-right">
                                                                     <div class="dropdown dropdown-action">
                                                                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                                                                         <div class="dropdown-menu dropdown-menu-right">
                                                                             <a class="dropdown-item" href="<?php echo base_url(); ?>Employee_Account/Form_edit_recuitment_programm?ID_recuitment_programm=<?php echo $row['ID_recuitment_programm']; ?>"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                                                            <a class="dropdown-item" href="<?php echo base_url(); ?>Employee_Account/Delete_recuitment_programm?ID_recuitment_programm=<?php echo $row['ID_recuitment_programm']; ?>" onclick="return confirm('Are you Sure?')"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                                                            <a class="dropdown-item" href="<?php echo base_url(); ?>Employee_Account/Delete_recuitment_programm?ID_recuitment_programm=<?php echo $row['ID_recuitment_programm']; ?>" onclick="return confirm('Êtes-vous sûr?');"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                                                                         </div>
                                                                     </div>
                                                                 </td>

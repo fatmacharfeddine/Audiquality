@@ -30,7 +30,23 @@
                             <div class="col-md-12">
                                 <div class="card-box">
                                     <form id="popup" action="<?php echo base_url(); ?>Employee_Account/Submit_add_risk/" enctype="multipart/form-data" method="post">
+                                        <div class="row" style="margin-bottom: 3%;">
+                                            <div class="col-md-3">
+                                            </div>
+                                            <?php if (isset($_GET['ErrorDate'])) {
+                                            ?>
+                                                <div class="col-md-6 dateError">
+
+                                                    <p>la date debut doit etre inferieur a la date fin</p>
+
+                                                </div>
+                                            <?php
+                                            } ?>
+                                            <div class="col-md-3">
+                                            </div>
+                                        </div>
                                         <div class="row">
+
                                             <div class="col-md-6">
 
                                                 <?php if (isset($ID_risk)) {
@@ -77,9 +93,8 @@
                                                     <label class="col-form-label col-md-3">Date</label>
                                                     <div class="col-md-9">
                                                         <input type="date" class="form-control" name="Date_risk" value="<?php if (isset($Date_risk)) {
-                                                                                                                            echo $Date_risk;
+                                                                                                                            echo date('Y-m-d', strtotime($Date_risk));
                                                                                                                         } ?>" placeholder="Date">
-                                                        </textarea>
 
                                                     </div>
                                                 </div>
@@ -87,9 +102,8 @@
                                                     <label class="col-form-label col-md-3">Next Date</label>
                                                     <div class="col-md-9">
                                                         <input type="date" class="form-control" name="Next_date_risk" value="<?php if (isset($Next_date_risk)) {
-                                                                                                                                    echo $Next_date_risk;
-                                                                                                                                } ?>" placeholder="Next Date">
-                                                        </textarea>
+                                                                                                                                    echo date('Y-m-d', strtotime($Next_date_risk));
+                                                                                                                                }  ?>" placeholder="Next Date">
 
                                                     </div>
                                                 </div>
@@ -97,10 +111,9 @@
                                                 <div class="form-group row">
                                                     <label class="col-form-label col-md-3">Description</label>
                                                     <div class="col-md-9">
-                                                        <textarea cols="30" rows="6" class="form-control" name="Description_risk" value="<?php if (isset($Description_risk)) {
-                                                                                                                                                echo $Description_risk;
-                                                                                                                                            } ?>" placeholder="Description">
-                                                                                                                        </textarea>
+                                                        <textarea name="Description_risk" cols="30" rows="6" class="form-control"> <?php if (isset($Description_risk)) {
+                                                                                                                                        echo $Description_risk;
+                                                                                                                                    } ?>  </textarea>
 
                                                     </div>
                                                 </div>
@@ -115,8 +128,8 @@
 
 
 
-                                        <div class="text-right">
-                                        <button type="button" id="btn_add" class="btn btn-primary">Confirm</button>
+                                        <div class=" text-right">
+                                            <button type="button" id="btn_add" class="btn btn-primary">Confirm</button>
                                         </div>
                                     </form>
 
@@ -136,7 +149,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
 
     <script>

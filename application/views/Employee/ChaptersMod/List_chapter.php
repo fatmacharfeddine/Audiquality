@@ -36,10 +36,10 @@
                                             <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                                             <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(23px, 27px, 0px);">
                                                 <a class="dropdown-item" href="<?php echo base_url(); ?>Employee_Account/Form_edit_chapter?ID_chapter=<?php echo $row['ID_chapter'] ?>"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-
-                                                <form id="popup" action="<?php echo base_url(); ?>Employee_Account/Delete_chapter?ID_chapter=<?php echo $row['ID_chapter'] ?>" enctype="multipart/form-data" method="post">
+                                                <a class="dropdown-item" href="<?php echo base_url(); ?>Employee_Account/Delete_chapter?ID_chapter=<?php echo $row['ID_chapter'] ?>" onclick="return confirm('Êtes-vous sûr?');"><i class="fa fa-trash-o m-r-5"></i>  Delete </a>
+                                                <!--form id="popup" action="<?php echo base_url(); ?>Employee_Account/Delete_chapter?ID_chapter=<?php echo $row['ID_chapter'] ?>" enctype="multipart/form-data" method="post">
                                                     <button class="dropdown-item" id="btn_add" type="button"><i class="fa fa-trash-o m-r-5"></i>Delete</button>
-                                                </form>
+                                                </form-->
 
                                             </div>
                                         </div>
@@ -54,7 +54,7 @@
         </div>
 
 
-        
+
         <script>
             $(document).ready(function() {
 

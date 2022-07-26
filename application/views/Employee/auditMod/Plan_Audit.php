@@ -1,4 +1,3 @@
-
 <body>
     <div class="page-wrapper">
         <div class="content">
@@ -23,17 +22,21 @@
                                 </div>
                                 <div class="blog-content">
                                     <div class="row">
-                                        <div class="col-sm-6" style="text-align: right;">
-                                            <a href="<?php echo base_url(); ?>Employee_Account/Delete_Plan?ID_audit_plan=<?php echo $row['ID_audit_plan'] ?>" onclick="return confirm('Are you Sure?')">
+                                        <div class="col-sm-3"></div>
+
+                                        <div class="col-sm-6" style="text-align: center;">
+                                            <a href="<?php echo base_url(); ?>Employee_Account/submit_delete_plan?ID_audit_plan=<?php echo $row['ID_audit_plan'] ?>" onclick="return confirm('Are you Sure?')">
                                                 <i class="material-icons" style="    color: red;">&#xe92b;</i>
                                             </a>
                                         </div>
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-3"></div>
+
+                                        <!--div class="col-sm-6">
                                             <a href="<?php echo base_url(); ?>Employee_Account/Form_edit_Plan?ID_audit_plan=<?php echo $row['ID_audit_plan'] ?>">
 
                                                 <i class="material-icons" style="color:green;">&#xe923;</i>
                                             </a>
-                                        </div>
+                                        </div-->
                                     </div>
 
 

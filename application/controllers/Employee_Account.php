@@ -2382,7 +2382,7 @@ class Employee_Account extends CI_Controller
 
 			//echo ($this->data['ID_chapter']);
 			//die();
-			return redirect(base_url() . 'Employee_Account/View_chapter?ID_chapter=' . $this->data['ID_chapter'] . '&ID_grid=' . $this->data['ID_grid']);
+			return redirect(base_url() . 'Employee_Account/view_chapter_grid?ID_chapter=' . $this->data['ID_chapter'] . '&ID_grid=' . $this->data['ID_grid']);
 			/*************************Access Verif************************/
 		} else {
 			$this->load->view('Employee/No_access.php', $this->data);
@@ -2424,7 +2424,7 @@ class Employee_Account extends CI_Controller
 				//echo $this->data['ID_chapter'];
 				//die();
 			}
-			return redirect(base_url() . 'Employee_Account/View_chapter?ID_chapter=' . $this->data['ID_chapter'] . '&ID_grid=' . $this->data['ID_grid']);
+			return redirect(base_url() . 'Employee_Account/view_chapter_grid?ID_chapter=' . $this->data['ID_chapter'] . '&ID_grid=' . $this->data['ID_grid']);
 			/*************************Access Verif************************/
 		} else {
 			$this->load->view('Employee/No_access.php', $this->data);
@@ -4223,13 +4223,23 @@ class Employee_Account extends CI_Controller
 				if (isset($_POST['ID_risk'])) {
 					//echo 'heey'; die();
 					$ID_risk = $_POST['ID_risk'];
-					$this->Mrisk->edit_risk($this->data, $ID_risk);
+					if ($_POST['Date_risk'] < $_POST['Next_date_risk']) {
+
+						$this->Mrisk->edit_risk($this->data, $ID_risk);
+					} else {
+						return redirect(base_url() . 'Employee_Account/Form_edit_risk?ID_risk=' . $ID_risk . '&ErrorDate=1');
+					}
 				} else {
-					$_POST['ID_risk'] = $this->Mrisk->add_risk($this->data);
+					if ($_POST['Date_risk'] < $_POST['Next_date_risk']) {
+
+						$_POST['ID_risk'] = $this->Mrisk->add_risk($this->data);
+					} else {
+						return redirect(base_url() . 'Employee_Account/Form_add_risk?ErrorDate=1');
+					}
 				}
 			}
 
-			return redirect(base_url() . 'Employee_Account/View_risk?ID_risk=' . $_POST['ID_risk']);
+			return redirect(base_url() . 'Employee_Account/List_risk');
 			/*************************Access Verif************************/
 		} else {
 			$this->load->view('Employee/No_access.php', $this->data);
@@ -4303,7 +4313,7 @@ class Employee_Account extends CI_Controller
 				$this->Mrisk_action->delete_action($this->data['ID_risk']);
 				$this->Mrisk_action->delete_action_list($this->data['ID_risk']);
 			}
-			return redirect(base_url() . 'Employee_Account/View_risk?ID_risk=' . $_POST['ID_risk']);
+			return redirect(base_url() . 'Employee_Account/List_risk');
 
 			/*************************Access Verif************************/
 		} else {
@@ -4765,10 +4775,6 @@ class Employee_Account extends CI_Controller
 		$this->load->view('Employee/Header');
 		$this->load->view('Employee/Menu', $this->data);
 
-
-
-
-
 		if ($this->test_verif_edit == 1) {
 			/*********************End Access Verif************************/
 			$ID_risk = $_POST['ID_risk'];
@@ -4865,8 +4871,7 @@ class Employee_Account extends CI_Controller
 			if ($_GET) {
 				//echo 'hi'; die();
 				$this->data['ID_risk'] = $_GET['ID_risk'];
-				//			$this->data['ID_sector'] = $_GET['ID_sector'];
-
+				//$this->data['ID_sector'] = $_GET['ID_sector'];
 				$this->data['ID_identification'] = $_GET['ID_identification'];
 				$this->data['identify'] = $this->Mrisk_identification->delete_identification($this->data['ID_identification']);
 				$this->Mrisk_evaluation->delete_evaluation($this->data['ID_identification']);
@@ -6156,16 +6161,22 @@ class Employee_Account extends CI_Controller
 			$this->data['risk_objectif'] = $this->Mrisk_objectif->get_risk_objectif_by_ID_company($this->data['ID_company']);
 			$this->data['interest'] = $this->Mprocessus->get_interest();
 			$this->data['processus'] = $this->Mprocessus->get_processus_by_category($this->data['processcategory']);
-			if (isset($_GET['ID_processus'])) {
-				$this->data['current_processus'] = $_GET['ID_processus'];
+			if ($this->data['processus'] != null) {
+
+				if (isset($_GET['ID_processus'])) {
+					$this->data['current_processus'] = $_GET['ID_processus'];
+				} else {
+					$this->data['current_processus'] = $this->data['processus'][0]['ID_processus'];
+					//echo print_r($this->data['current_processus']);					die();
+				}
+
+				$this->data['processus_ID'] = $this->Mprocessus->get_processus_by_ID($this->data['current_processus']);
+				$this->data['Title_processus'] = $this->data['processus_ID'][0]['Title_processus'];
+
+				$this->data['objectif'] = $this->Mrisk_objectif->get_risk_objectif_by_processus($this->data['current_processus']);
 			} else {
-				$this->data['current_processus'] = $this->data['processus'][0]['ID_processus'];
+				$this->data['exist'] = 1;
 			}
-			$this->data['processus_ID'] = $this->Mprocessus->get_processus_by_ID($this->data['current_processus']);
-			$this->data['Title_processus'] = $this->data['processus_ID'][0]['Title_processus'];
-
-			$this->data['objectif'] = $this->Mrisk_objectif->get_risk_objectif_by_processus($this->data['current_processus']);
-
 			$this->load->view('Employee/Risk_objectifMod/List_risk_objectif_by_type.php', $this->data);
 			/*************************Access Verif************************/
 		} else {
@@ -6278,11 +6289,6 @@ class Employee_Account extends CI_Controller
 		$this->commonAccess($current_function);
 		$this->load->view('Employee/Header');
 		$this->load->view('Employee/Menu', $this->data);
-
-
-
-
-
 		if ($this->test_verif_edit == 1) {
 			/*********************End Access Verif************************/
 
@@ -6295,7 +6301,13 @@ class Employee_Account extends CI_Controller
 				$this->data['Title_risk_objectif'] = $this->data['risk_objectif'][0]['Title_risk_objectif'];
 				$this->data['Date_risk_objectif'] = $this->data['risk_objectif'][0]['Date_risk_objectif'];
 				$this->data['Action_risk_objectif'] = $this->data['risk_objectif'][0]['Action_risk_objectif'];
+				$this->data['Cible_risk_objectif'] = $this->data['risk_objectif'][0]['Cible_risk_objectif'];
+				$this->data['Taux_risk_objectif1'] = $this->data['risk_objectif'][0]['Taux_risk_objectif1'];
+				$this->data['Taux_risk_objectif2'] = $this->data['risk_objectif'][0]['Taux_risk_objectif2'];
+				$this->data['Taux_risk_objectif3'] = $this->data['risk_objectif'][0]['Taux_risk_objectif3'];
+				$this->data['Frequence_risk_objectif'] = $this->data['risk_objectif'][0]['Frequence_risk_objectif'];
 			}
+			//echo $this->data['Date_risk_objectif'];die();
 			$this->load->view('Employee/Risk_objectifMod/Add_risk_objectif.php', $this->data);
 			/*************************Access Verif************************/
 		} else {
@@ -6396,16 +6408,21 @@ class Employee_Account extends CI_Controller
 			//$this->data['risk_objectif'] = $this->Mrisk_objectif->get_risk_objectif_by_ID_company($this->data['ID_company']);
 			$this->data['interest'] = $this->Mprocessus->get_interest();
 			$this->data['processus'] = $this->Mprocessus->get_processus_by_category($this->data['processcategory']);
-			if (isset($_GET['ID_processus'])) {
-				$this->data['current_processus'] = $_GET['ID_processus'];
-			} else {
-				$this->data['current_processus'] = $this->data['processus'][0]['ID_processus'];
-			}
-			$this->data['processus_ID'] = $this->Mprocessus->get_processus_by_ID($this->data['current_processus']);
-			$this->data['Title_processus'] = $this->data['processus_ID'][0]['Title_processus'];
+			if ($this->data['processus'] != null) {
 
-			//$this->data['objectif'] = $this->Mrisk_objectif->get_risk_objectif_by_processus($this->data['current_processus']);
-			$this->data['planification'] = $this->Mrisk_planification->get_risk_planification_by_processus($this->data['current_processus']);
+				if (isset($_GET['ID_processus'])) {
+					$this->data['current_processus'] = $_GET['ID_processus'];
+				} else {
+					$this->data['current_processus'] = $this->data['processus'][0]['ID_processus'];
+				}
+				$this->data['processus_ID'] = $this->Mprocessus->get_processus_by_ID($this->data['current_processus']);
+				$this->data['Title_processus'] = $this->data['processus_ID'][0]['Title_processus'];
+
+				//$this->data['objectif'] = $this->Mrisk_objectif->get_risk_objectif_by_processus($this->data['current_processus']);
+				$this->data['planification'] = $this->Mrisk_planification->get_risk_planification_by_processus($this->data['current_processus']);
+			} else {
+				$this->data['exist'] = 1;
+			}
 
 			$this->load->view('Employee/Risk_planificationMod/List_risk_planification_by_type.php', $this->data);
 			/*************************Access Verif************************/
@@ -8268,7 +8285,7 @@ class Employee_Account extends CI_Controller
 			}
 			$this->data['recuitments'] = $this->Mrecuitment->get_recuitment_eval_emp_paging($page);
 			/*echo "<pre>";
-					echo print_r($this->data['recuitments']);
+					echo print_r($this->data['nb']);
 					echo "<pre>";
 					die();*/
 			$this->data['doc_upload'] = $this->Mrecuitment->get_doc_upload(2);
@@ -9365,6 +9382,7 @@ class Employee_Account extends CI_Controller
 		$this->load->view('Employee/Footer');
 		/*********************End Access Verif************************/
 	}
+
 	/*********submit add les info audit description/objectif/domaine/methodologie/evaluation */
 	public function submit_add_steps()
 	{
@@ -9723,8 +9741,6 @@ class Employee_Account extends CI_Controller
 
 		if ($this->test_verif_edit == 1) {
 			/*********************End Access Verif************************/
-
-
 			$this->load->view('Employee/auditMod/Add_Plan.php', $this->data);
 			/*************************Access Verif************************/
 		} else {
@@ -9781,7 +9797,32 @@ class Employee_Account extends CI_Controller
 		$this->load->view('Employee/Footer');
 		/*********************End Access Verif************************/
 	}
+	public function submit_delete_plan()
+	{
+		$this->commonData();
+		/*************************Access Verif************************/
+		$this->function_type = "edit";
+		$current_function = "List_audit";
+		$this->commonAccess($current_function);
+		$this->load->view('Employee/Header');
+		$this->load->view('Employee/Menu', $this->data);
 
+		if ($this->test_verif_edit == 1) {
+			/*********************End Access Verif************************/
+			if ($_GET) {
+
+				$this->data['ID_audit_plan'] = $_GET['ID_audit_plan'];
+				$this->Maudit->delete_Plan($this->data['ID_audit_plan']);
+			}
+
+			return redirect(base_url() . 'Employee_Account/List_audit');
+			/*************************Access Verif************************/
+		} else {
+			$this->load->view('Employee/No_access.php', $this->data);
+		}
+		$this->load->view('Employee/Footer');
+		/*********************End Access Verif************************/
+	}
 	/******Crud processus ******/
 	/******load view list process *******/
 	public function List_Processus()

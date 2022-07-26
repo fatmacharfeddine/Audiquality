@@ -74,6 +74,8 @@ class Mchapter extends CI_Model
 
         $this->db->from('auditquality_chapters');
         $this->db->limit(9, $page);
+        $this->db->order_by('auditquality_chapters.ID_chapter','desc');
+
         $query = $this->db->get();
         if ($query->num_rows() == 0) {
             return False;
@@ -156,9 +158,10 @@ class Mchapter extends CI_Model
     {
         $this->db->select('*');
         //$this->db->join('auditquality_company', 'auditquality_company.ID_company = auditquality_chapters.ID_company');
-
         $this->db->from('auditquality_grid');
         $this->db->limit(9, $page);
+        $this->db->order_by('auditquality_grid.ID_grid','desc');
+
         $query = $this->db->get();
         if ($query->num_rows() == 0) {
             return False;

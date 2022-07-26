@@ -13,7 +13,7 @@
                             <div class="blog-info clearfix">
                                 <div class="post-left">
                                     <ul>
-                                        <li><a href="#."><i class="fa fa-calendar"></i> <span>December 6, 2017</span></a></li>
+                                        <!--li><a href="#."><i class="fa fa-calendar"></i> <span>December 6, 2017</span></a></li-->
                                     </ul>
                                 </div>
                             </div>
@@ -70,10 +70,12 @@
                                                         </a>
                                                     </div>
                                                     <div class="col-md-2">
-
-                                                        <form id="popup" action="<?php echo base_url(); ?>Employee_Account/Delete_subject?ID_subject=<?php echo $row['ID_subject'] ?>" enctype="multipart/form-data" method="post">
+                                                    <a href="<?php echo base_url(); ?>Employee_Account/Delete_subject?ID_subject=<?php echo $row['ID_subject'] ?>"  onclick="return confirm('Êtes-vous sûr?');">
+                                                    <button class="btn btn-primary btn-primary-four float-right" id="btn_add" type="button" ><i class="fa fa-trash-o m-r-5"></i>Delete</button>
+                                                        </a>
+                                                        <!--form id="popup" action="<?php echo base_url(); ?>Employee_Account/Delete_subject?ID_subject=<?php echo $row['ID_subject'] ?>" enctype="multipart/form-data" method="post">
                                                             <button class="btn btn-primary btn-primary-four float-right" id="btn_add" type="button"><i class="fa fa-trash-o m-r-5"></i>Delete</button>
-                                                        </form>
+                                                        </form-->
 
                                                     </div>
                                                 </div>

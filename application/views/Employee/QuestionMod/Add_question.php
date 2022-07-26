@@ -1,4 +1,3 @@
-
 <body>
 
 
@@ -45,15 +44,17 @@
                                                         ?>
                                                             <input type="hidden" name="ID_question" value="<?php echo $ID_question ?>">
                                                         <?php } ?>
-                                                        <textarea type="text" name="Text_question" value="<?php if (isset($Text_question)) {
-                                                                                                            echo $Text_question;
-                                                                                                        } ?>" placeholder="Tap question" class="form-control">
-                                                        </textarea>
+
+                                                        <textarea name="Text_question" cols="30" rows="6" class="form-control" placeholder="Tap question">
+                                                             <?php if (isset($Text_question)) {
+                                                                    echo $Text_question;
+                                                                } ?> 
+                                                         </textarea>
                                                     </div>
                                                 </div>
 
 
-                                                
+
 
                                             </div>
 
@@ -77,40 +78,40 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
 
-<script>
-    $(document).ready(function() {
+    <script>
+        $(document).ready(function() {
 
 
 
 
-        $("#btn_add").click(function() {
-            swal({
-                title: 'Save',
-                text: "Are you sure?",
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                cancelButtonText: 'Cancel',
+            $("#btn_add").click(function() {
+                swal({
+                    title: 'Save',
+                    text: "Are you sure?",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    cancelButtonText: 'Cancel',
 
-                confirmButtonText: 'Yes'
-            }).then((result) => {
+                    confirmButtonText: 'Yes'
+                }).then((result) => {
 
-                if (result.value) {
-                    //$("#action").val(1);
+                    if (result.value) {
+                        //$("#action").val(1);
 
 
-                    $('form#popup').submit();
-                    //	swal('its OK '+result.value);
-                } else {
-                    swal("This operation is canceled");
-                    return false;
-                }
+                        $('form#popup').submit();
+                        //	swal('its OK '+result.value);
+                    } else {
+                        swal("This operation is canceled");
+                        return false;
+                    }
+                });
             });
-        });
 
-    });
-</script>
+        });
+    </script>

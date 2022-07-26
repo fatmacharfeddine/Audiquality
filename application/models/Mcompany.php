@@ -34,7 +34,7 @@ class Mcompany extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('auditquality_subjects');
-        $this->db->order_by('Number_subject');
+        $this->db->order_by('Number_subject','desc');
         $this->db->where('auditquality_subjects.ID_chapter=' . $id);
         $query = $this->db->get();
         return $query->result_array();
@@ -43,7 +43,7 @@ class Mcompany extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('auditquality_questions');
-        $this->db->order_by('ID_question');
+        $this->db->order_by('ID_question','desc');
         $this->db->where('auditquality_questions.ID_chapter=' . $id);
         $query = $this->db->get();
         // echo print_r($query->result_array()) ;die();

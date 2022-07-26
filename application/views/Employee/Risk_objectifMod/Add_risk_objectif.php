@@ -65,17 +65,19 @@
                                                     <div class="col-md-9">
 
                                                         <input type="date" name="Date_risk_objectif" value="<?php if (isset($Date_risk_objectif)) {
-                                                                                                                echo $Date_risk_objectif;
-                                                                                                            } ?>" placeholder="<?php if (isset($Date_risk_objectif)) {
-                                                                                                                                    echo $Date_risk_objectif;
-                                                                                                                                } ?>" class="form-control">
+                                                                                                                echo  date('Y-m-d', strtotime($Date_risk_objectif));
+                                                                                                            } ?>" placeholder="Date" class="form-control">
 
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="col-form-label col-md-12">Indicateur</label>
-                                                    <textarea cols="30" rows="4" class="form-control" name="Action_risk_objectif" id="summernote"></textarea>
+                                                    <textarea cols="30" rows="4" class="form-control" name="Action_risk_objectif" id="summernote">
+                                                        <?php if (isset($Action_risk_objectif)) {
+                                                            echo $Action_risk_objectif;
+                                                        } ?>
+                                                    </textarea>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-form-label col-md-3">Valeur Cible (%)</label>
@@ -88,40 +90,7 @@
                                                     </div>
                                                 </div>
 
-                                                <!--div class="form-group row">
-                                                    <label class="col-form-label col-md-3">Fréquence de suivi</label>
-                                                    <div class="col-md-9">
-                                                        <?php
-
-                                                        $select1 = "";
-                                                        $select2 = "";
-                                                        $select3 = "";
-
-                                                        if (isset($Frequence_risk_objectif)) {
-                                                            //echo $Frequence_risk_objectif ; 
-
-                                                            if ($Frequence_risk_objectif == 1) {
-                                                                $select1 = "selected";
-                                                            }
-                                                            if ($Frequence_risk_objectif == 2) {
-                                                                $select2 = "selected";
-                                                            }
-                                                            if ($Frequence_risk_objectif == 3) {
-                                                                $select3 = "selected";
-                                                            }
-                                                        } else {
-                                                            $select0 = "selected";
-                                                        } ?>
-                                                        <select class="form-control" name="Frequence_risk_objectif" id="Frequence_risk_objectif">
-                                                            <option value="1" <?php echo $select1 ?>>trimestriel </option>
-                                                            <option value="2" <?php echo $select2 ?>>semestriel </option>
-                                                            <option value="3" <?php echo $select3 ?>>annuel </option>
-
-                                                        </select>
-                                                    </div>
-                                                </div-->
-
-
+                                             
                                                 <?php
 
                                                 $select1 = "";
@@ -129,7 +98,7 @@
                                                 $select3 = "";
 
                                                 if (isset($Frequence_risk_objectif)) {
-                                                    //echo $Frequence_risk_objectif ; 
+                                                  //  echo $Frequence_risk_objectif ; 
 
                                                     if ($Frequence_risk_objectif == 1) {
                                                         $select1 = "checked";
@@ -153,7 +122,7 @@
                                                         </div>
                                                         <div class="radio" name="Frequence_risk_objectif">
                                                             <label>
-                                                                <input type="radio" name="Frequence_risk_objectif" id="sem" value="2" <?php echo $select2 ?>> semestriel
+                                                                <input type="radio" name="Frequence_risk_objectif" id="sem" value="2" <?php echo $select2 ?> > semestriel
                                                             </label>
                                                         </div>
                                                         <div class="radio" name="Frequence_risk_objectif">
@@ -287,14 +256,14 @@
                   $('#Taux_risk_objectif3').prop('disabled', false);
               }*/
             if ($("#sem").is(":checked")) {
-                  $('#Taux_risk_objectif2').prop('disabled', false);
+                $('#Taux_risk_objectif2').prop('disabled', false);
                 $('#Taux_risk_objectif3').prop('disabled', true);
 
             } else
             if ($("#ann").is(":checked")) {
                 $('#Taux_risk_objectif2').prop('disabled', true);
                 $('#Taux_risk_objectif3').prop('disabled', true);
-            
+
             } else {
                 $('#Taux_risk_objectif2').prop('disabled', false);
                 $('#Taux_risk_objectif3').prop('disabled', false);

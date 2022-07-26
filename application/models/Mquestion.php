@@ -75,6 +75,7 @@ class Mquestion extends CI_Model
         $this->db->join('auditquality_chapters', 'auditquality_chapters.ID_chapter = auditquality_questions.ID_chapter');
 
         $this->db->where('auditquality_questions.ID_subject', $ID_subject);
+        $this->db->order_by('auditquality_questions.ID_question','desc');
 
         $this->db->limit(9, $page);
         $query = $this->db->get();

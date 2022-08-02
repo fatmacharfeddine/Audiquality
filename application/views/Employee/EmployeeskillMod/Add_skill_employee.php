@@ -93,7 +93,7 @@
                                         </div>
                                         <div class="text-right">
 
-                                            <button type="button" id="btn_add" class="btn btn-primary">Confirm</button>
+                                            <button type="submit" id="btn_add" class="btn btn-primary">Confirm</button>
                                         </div>
                                     </form>
 

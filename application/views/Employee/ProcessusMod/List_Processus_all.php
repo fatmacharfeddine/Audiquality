@@ -161,6 +161,23 @@
                         </div>
                     </div>
                 </div>
+
+
+                <!------------------------------------- Documents Managements -------------------------------------------->
+                <div class="content" id="printMe">
+                    <h3 class="blog-title" style="text-align: center;">Gestion des documents</h3>
+                    <div class="row" style="border: 1px solid #e7e7e7;padding: 2%;background-color: white;">
+
+
+                        <div style="text-align:center">
+                            <a href="<?php echo base_url(); ?>Employee_Account/List_res_qse" class="btn btn-success btn-block" style="background-color: #009efb;border: 1px solid #009efb;"> Documents SMQ </a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!------------------------------------- Documents Managements -------------------------------------------->
+
             </section>
         </div>
     </div>

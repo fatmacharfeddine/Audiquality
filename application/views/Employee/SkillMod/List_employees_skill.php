@@ -239,7 +239,7 @@
 
                                                         </div>
                                                         <div class="text-right">
-                                                            <button id="btn_add" type="button" class="btn btn-primary">Confirm</button>
+                                                            <button id="btn_add" type="submit" class="btn btn-primary">Confirm</button>
                                                         </div>
                                                     </form>
 

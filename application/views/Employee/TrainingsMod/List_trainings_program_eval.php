@@ -49,6 +49,7 @@
                                                 <th class="text-center" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 30px;">Budget</th>
                                                 <th class="text-center" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 30px;">Organisme</th>
 
+                                                <th colspan="4"> | Evaluation</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -72,6 +73,49 @@
                                                             <td><?= $row['Hours_training_programm'] ?></td>
                                                             <td><?= $row['Budget_training_programm'] ?></td>
                                                             <td><?= $row['Name_organization'] ?></td>
+                                                            <form id="audits" enctype="multipart/form-data" action="<?php echo base_url(); ?>Employee_Account/Submit_add_training_evaluation_emp" enctype="multipart/form-data" method="post">
+
+                                                                <?php if (isset($row['Objectif_training_evaluation_emp'])) { ?>
+
+                                                                    <?php if ($row['Objectif_training_evaluation_emp'] < 50) {
+
+                                                                    ?>
+                                                                        <td>
+                                                                            <p style="border-radius: 50%;background-color: #eb1c24;height: 50px;width: 50px;padding: 14px 0px 0px 10px;color: white;"> <?= $row['Objectif_training_evaluation_emp'] ?> % </p>
+                                                                        </td>
+                                                                        <td style="color:#eb1c24;">Non Efficace <i class="fa fa-times" aria-hidden="true"></i></td>
+                                                                    <?php  } else { ?>
+                                                                        <td>
+                                                                            <p style="border-radius: 50%;background-color: #8bc43f;height: 50px;width: 50px;padding: 14px 0px 0px 10px;color: white;"> <?= $row['Objectif_training_evaluation_emp'] ?> % </p>
+                                                                        </td>
+                                                                        <td style="color:#74a92f;">Efficace <i class="fa fa-check" aria-hidden="true"></i></td>
+                                                                    <?php  } ?>
+
+                                                                <?php    } else { ?>
+                                                                    <td> <input style="width: 50px;" type="number" name="Objectif_training_evaluation_emp" value="<?= $row['Objectif_training_evaluation_emp'] ?>"> %
+                                                                    </td>
+                                                                    <td></td>
+                                                                <?php } ?>
+
+
+                                                                <?php if (isset($row['File_training_evaluation_emp'])) {
+                                                                ?>
+
+                                                                    <td> <a href="<?php echo base_url(); ?>uploads/Training_eval_emp/<?php echo $row['File_training_evaluation_emp'] ?>">Open File</a></td>
+                                                                    <td><a href="<?php echo base_url() ?>/Employee_Account/delete_training_evaluation_emp?ID_training_evaluation_emp=<?php echo $row['ID_training_evaluation_emp'] ?>&Year_training_programm=<?= $row['Year_training_programm'] ?>" style="width: 38px;" class="btn btn-primary btn-primary-four"><i class="fa fa-trash-o m-r-5"></i> </a></td>
+                                                                <?php    } else { ?>
+                                                                    <td>
+                                                                        <a class="btn btn-sm btn-primary" style="background-color:#565656 ;border: black solid 1.8px;color: white;" name="profileDisplay" id="profileDisplay" onclick="triggerClick()" alt="">Upload Evaluation</a>
+                                                                        <input type="hidden" name="Year_training_programm" value="<?= $row['Year_training_programm'] ?>">
+
+                                                                        <input type="hidden" name="ID_training_programm" value="<?= $row['ID_training_programm'] ?>">
+                                                                        <img id="target" />
+                                                                        <input type="file" accept="image/jpg, image/jpeg, image/png" id="File_training_evaluation_emp" name="File_training_evaluation_emp" onchange="displayImage(this)" style="display:none;  text-align:center;  width: 50px; height: 50px;border: 2px solid #d1cfcf;padding: 2px;"> </input>
+
+                                                                    <td> <button style="border-radius: 50%;" id="btn_add" type="submit" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                                                                    </td>
+                                                                <?php } ?>
+                                                            </form>
 
 
                                                         </tr>

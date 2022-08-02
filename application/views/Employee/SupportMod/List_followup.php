@@ -6,7 +6,7 @@
 
 
 
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-6">
                     <div class="card-box">
@@ -117,7 +117,7 @@
                 </div>
                 <div class="col-md-4"></div>
 
-            </div>
+            </div> -->
 
             <div class="row">
                 <div class="col-md-2"></div>
@@ -204,7 +204,7 @@
 
             <div class="row">
                 <div class="col-sm-4 col-3">
-                    <h4 class="page-title">Gestion de Suivi </h4>
+                    <h4 class="page-title"> Bibliothèque Gestion de Suivi </h4>
                 </div>
                 <div class="col-sm-8 col-9 text-right m-b-20">
                     <a href="<?php echo site_url('Employee_Account/Form_add_followup') ?>" class="btn btn btn-primary btn-rounded float-right"><i class="fa fa-plus"></i> Ajout followup</a>
@@ -249,6 +249,9 @@
                 <?php }
                 } ?>
             </div>
+
+
+            
         </div>
     </div>
 

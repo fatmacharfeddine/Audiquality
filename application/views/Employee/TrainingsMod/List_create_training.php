@@ -91,7 +91,7 @@
             <div class="row">
                 <div class="col-sm-6 col-md-6 col-lg-4">
                     <div class="widget post-widget">
-                        <h5>Employees Request</h5>
+                        <h5>Trainings for Groups</h5>
                         <ul class="latest-posts">
                             <li>
                                 <div class="post-thumb">
@@ -115,7 +115,7 @@
 
                 <div class="col-sm-6 col-md-6 col-lg-4">
                     <div class="widget post-widget">
-                        <h5>Employees Request</h5>
+                        <h5>Training for skills</h5>
                         <ul class="latest-posts">
                             <li>
                                 <div class="post-thumb">
@@ -139,7 +139,7 @@
 
                 <div class="col-sm-6 col-md-6 col-lg-4">
                     <div class="widget post-widget">
-                        <h5>Employees Request</h5>
+                        <h5>Organisations propositions</h5>
                         <ul class="latest-posts">
                             <li>
                                 <div class="post-thumb">

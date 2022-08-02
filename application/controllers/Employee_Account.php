@@ -92,6 +92,8 @@ class Employee_Account extends CI_Controller
 
 		$this->load->model('Mtraining_group_request');
 
+		$this->load->model('Mtraining_group');
+
 		$this->load->model('Maudit_plan');
 
 		//$this->load->model('Msurvey');
@@ -7460,7 +7462,7 @@ class Employee_Account extends CI_Controller
 			$this->data['URL_link_document_upload'] = $this->data['doc_upload'][0]['URL_link_document_upload'];
 			$this->data['File_document_upload'] = $this->data['doc_upload'][0]['File_document_upload'];
 
-			$this->load->view('Employee/trainingsMod/List_trainings_program.php', $this->data);
+			$this->load->view('Employee/trainingsMod/List_trainings_program_eval.php', $this->data);
 			/*************************Access Verif************************/
 		} else {
 			$this->load->view('Employee/No_access.php', $this->data);
@@ -13237,6 +13239,31 @@ class Employee_Account extends CI_Controller
 	}
 
 
+	public function List_competances()
+	{
+
+		$this->commonData();
+		/*************************Access Verif************************/
+		$this->function_type = "edit";
+		$current_function = "List_res_humain";
+		$this->commonAccess($current_function);
+		$this->load->view('Employee/Header');
+		$this->load->view('Employee/Menu', $this->data);
+
+		if ($this->test_verif_edit == 1) {
+			/*********************End Access Verif************************/
+			$this->data['followup'] = $this->Mfollowup->get_followup_by_ID_company($this->data['ID_company']);
+
+			$this->load->view('Employee/SupportMod/List_competances.php', $this->data);
+			/*************************Access Verif************************/
+		} else {
+			$this->load->view('Employee/No_access.php', $this->data);
+		}
+		$this->load->view('Employee/Footer');
+		/*********************End Access Verif************************/
+	}
+
+	
 	public function Form_add_followup()
 	{
 		$this->commonData();
@@ -13246,7 +13273,6 @@ class Employee_Account extends CI_Controller
 		$this->commonAccess($current_function);
 		$this->load->view('Employee/Header');
 		$this->load->view('Employee/Menu', $this->data);
-
 
 
 
@@ -14350,7 +14376,7 @@ class Employee_Account extends CI_Controller
 					} else {
 						$ID_skill = $_POST['ID_skill'];
 						$this->Mskill->edit_skill($this->data_skill, $ID_skill);
-						return redirect(base_url() . 'Technical_Account/List_Skills', $this->data);
+						return redirect(base_url() . 'Employee_Account/List_Skills', $this->data);
 					}
 				} else {
 					if ($this->Mskill->get_skill_by_Name($_POST['Name_skill']) != False) {
@@ -14361,7 +14387,7 @@ class Employee_Account extends CI_Controller
 					}
 				}
 			}
-			return redirect(base_url() . 'Technical_Account/List_Skills', $this->data);
+			return redirect(base_url() . 'Employee_Account/List_Skills', $this->data);
 		} else {
 			$this->load->view('Employee/No_access.php', $this->data);
 		}
@@ -14537,7 +14563,7 @@ class Employee_Account extends CI_Controller
 				);
 
 				$this->Mtraining_group->add_training_group($this->data_training_group);
-				return redirect(base_url() . 'Technical_Account/List_employees_skill?ID_skill=' . $this->data['ID_skill'], $this->data);
+				return redirect(base_url() . 'Employee_Account/List_employees_skill?ID_skill=' . $this->data['ID_skill'], $this->data);
 			}
 		} else {
 			$this->load->view('Employee/No_access.php', $this->data);
@@ -14614,7 +14640,7 @@ class Employee_Account extends CI_Controller
 			echo $_POST['ID_skill_employee'];
 			die();*/
 				$this->Mtraining_group->add_training_group_employee($this->data_training_group);
-				return redirect(base_url() . 'Technical_Account/List_employees_skill?ID_skill=' . $this->data['ID_skill'], $this->data);
+				return redirect(base_url() . 'Employee_Account/List_employees_skill?ID_skill=' . $this->data['ID_skill'], $this->data);
 			}
 		} else {
 			$this->load->view('Employee/No_access.php', $this->data);
@@ -14645,7 +14671,7 @@ class Employee_Account extends CI_Controller
 				$this->data['ID_training_group'] = $_GET['ID_training_group'];
 				$this->data['training_group'] = $this->Mtraining_group->delete_training_group($this->data['ID_training_group']);
 			}
-			return redirect(base_url() . 'Technical_Account/List_employees_skill?ID_skill=' . $this->data['ID_skill'], $this->data);
+			return redirect(base_url() . 'Employee_Account/List_employees_skill?ID_skill=' . $this->data['ID_skill'], $this->data);
 		} else {
 			$this->load->view('Employee/No_access.php', $this->data);
 		}
@@ -14710,7 +14736,7 @@ class Employee_Account extends CI_Controller
 				$this->data['ID_skill'] = $_GET['ID_skill'];
 				$this->data['skill'] = $this->Mskill->delete_skill($this->data['ID_skill']);
 			}
-			return redirect(base_url() . 'Technical_Account/List_Skills');
+			return redirect(base_url() . 'Employee_Account/List_Skills');
 		} else {
 			$this->load->view('Employee/No_access.php', $this->data);
 		}
@@ -14836,7 +14862,7 @@ class Employee_Account extends CI_Controller
 					} else {
 						$ID_post = $_POST['ID_post'];
 						$this->Mpost->edit_post($this->data_post, $ID_post);
-						return redirect(base_url() . 'Technical_Account/List_posts');
+						return redirect(base_url() . 'Employee_Account/List_posts');
 					}
 				} else {
 					if ($this->Mpost->get_post_by_Name($_POST['Name_post']) != False) {
@@ -14844,7 +14870,7 @@ class Employee_Account extends CI_Controller
 						$this->load->view('Employee/PositionMod/Add_post.php', $this->data);
 					} else {
 						$this->Mpost->add_post($this->data_post);
-						return redirect(base_url() . 'Technical_Account/List_posts');
+						return redirect(base_url() . 'Employee_Account/List_posts');
 					}
 				}
 			}
@@ -14969,7 +14995,7 @@ class Employee_Account extends CI_Controller
 				$this->data['ID_post'] = $_GET['ID_post'];
 				$this->data['post'] = $this->Mpost->delete_post($this->data['ID_post']);
 			}
-			return redirect(base_url() . 'Technical_Account/List_posts');
+			return redirect(base_url() . 'Employee_Account/List_posts');
 		} else {
 			$this->load->view('Employee/No_access.php', $this->data);
 		}
@@ -15059,7 +15085,7 @@ class Employee_Account extends CI_Controller
 
 			//echo $_GET['ID_post'] ; die();
 			if (($this->Mskillmanagement->get_skills_for_position($this->data['ID_post'])) == False) {
-				return redirect(base_url() . 'Technical_Account/List_skills_management?ID_post=' . $this->data['ID_post']);
+				return redirect(base_url() . 'Employee_Account/List_skills_management?ID_post=' . $this->data['ID_post']);
 			} else {
 				$this->load->view('Employee/SkillmanagementMod/Add_skill_management.php', $this->data);
 			}
@@ -15104,7 +15130,7 @@ class Employee_Account extends CI_Controller
 				}
 			}
 			//echo 'haa !! '; die();
-			return redirect(base_url() . 'Technical_Account/List_skills_management?ID_post=' . $this->data['ID_post']);
+			return redirect(base_url() . 'Employee_Account/List_skills_management?ID_post=' . $this->data['ID_post']);
 		} else {
 			$this->load->view('Employee/No_access.php', $this->data);
 		}
@@ -15243,7 +15269,7 @@ class Employee_Account extends CI_Controller
 				$this->data['skill_management'] = $this->Mskillmanagement->delete_skill_management($this->data['ID_management']);
 			}
 			//echo $this->data['ID_post'] ; die();
-			return redirect(base_url() . 'Technical_Account/List_skills_management?ID_post=' . $this->data['ID_post']);
+			return redirect(base_url() . 'Employee_Account/List_skills_management?ID_post=' . $this->data['ID_post']);
 		} else {
 			$this->load->view('Employee/No_access.php', $this->data);
 		}
@@ -15419,7 +15445,7 @@ class Employee_Account extends CI_Controller
 					/*********************End Update employee****************************/
 				}
 			}
-			return redirect(base_url() . 'Technical_Account/List_departments');
+			return redirect(base_url() . 'Employee_Account/List_departments');
 		} else {
 			$this->load->view('Employee/No_access.php', $this->data);
 		}
@@ -15598,7 +15624,7 @@ class Employee_Account extends CI_Controller
 				$this->data['ID_department'] = $_GET['ID_department'];
 				$this->data['department'] = $this->Mdepartment->delete_department($this->data['ID_department']);
 			}
-			return redirect(base_url() . 'Technical_Account/view_department');
+			return redirect(base_url() . 'Employee_Account/view_department');
 		} else {
 			$this->load->view('Employee/No_access.php', $this->data);
 		}
@@ -15757,7 +15783,7 @@ class Employee_Account extends CI_Controller
 				//echo print_r($this->data['post']); die();
 
 				if (($this->Mdepartmentpost->get_posts_for_department($this->data['ID_department'])) == False) {
-					return redirect(base_url() . 'Technical_Account/view_department?ID_department=' . $this->data['ID_department']);
+					return redirect(base_url() . 'Employee_Account/view_department?ID_department=' . $this->data['ID_department']);
 				} else {
 					$this->load->view('Employee/DepartmentMod/Add_department_post.php', $this->data);
 				}
@@ -15803,7 +15829,7 @@ class Employee_Account extends CI_Controller
 					$this->Mdepartmentpost->add_department_post($this->data);
 				}
 			}
-			return redirect(base_url() . 'Technical_Account/view_department?ID_department=' . $_POST['ID_department']);
+			return redirect(base_url() . 'Employee_Account/view_department?ID_department=' . $_POST['ID_department']);
 		} else {
 			$this->load->view('Employee/No_access.php', $this->data);
 		}
@@ -15882,7 +15908,7 @@ class Employee_Account extends CI_Controller
 
 				$this->data['department_post'] = $this->Mdepartmentpost->delete_department_post($this->data['ID_department_post']);
 			}
-			return redirect(base_url() . 'Technical_Account/List_departments_post?ID_department=' . $this->data['ID_department']);
+			return redirect(base_url() . 'Employee_Account/List_departments_post?ID_department=' . $this->data['ID_department']);
 		} else {
 			$this->load->view('Employee/No_access.php', $this->data);
 		}
@@ -16013,7 +16039,7 @@ class Employee_Account extends CI_Controller
 					$this->Mdepartmentemployee->add_department_employee($this->data);
 				}
 			}
-			return redirect(base_url() . 'Technical_Account/List_departments_employee?ID_department_post=' . $_POST['ID_department_post']);
+			return redirect(base_url() . 'Employee_Account/List_departments_employee?ID_department_post=' . $_POST['ID_department_post']);
 		} else {
 			$this->load->view('Employee/No_access.php', $this->data);
 		}
@@ -16160,7 +16186,7 @@ class Employee_Account extends CI_Controller
 
 				$this->data['department_employee'] = $this->Mdepartmentemployee->delete_department_employee($this->data['ID_employee']);
 			}
-			return redirect(base_url() . 'Technical_Account/List_departments_employee?ID_department_post=' . $_POST['ID_department_post']);
+			return redirect(base_url() . 'Employee_Account/List_departments_employee?ID_department_post=' . $_POST['ID_department_post']);
 		} else {
 			$this->load->view('Employee/No_access.php', $this->data);
 		}
@@ -16333,7 +16359,7 @@ class Employee_Account extends CI_Controller
 					$this->Memployee->add_employee($this->data);
 				}
 			}
-			return redirect(base_url() . 'Technical_Account/List_employee?ID_department=' . $_POST['ID_department']);
+			return redirect(base_url() . 'Employee_Account/List_employee?ID_department=' . $_POST['ID_department']);
 		} else {
 			$this->load->view('Employee/No_access.php', $this->data);
 		}
@@ -16471,7 +16497,7 @@ class Employee_Account extends CI_Controller
 
 				$this->data['employee'] = $this->Memployee->delete_employee($this->data['ID_employee']);
 			}
-			return redirect(base_url() . 'Technical_Account/List_employee?ID_department=' . $this->data['ID_department']);
+			return redirect(base_url() . 'Employee_Account/List_employee?ID_department=' . $this->data['ID_department']);
 		} else {
 			$this->load->view('Employee/No_access.php', $this->data);
 		}
@@ -16560,7 +16586,7 @@ class Employee_Account extends CI_Controller
 				$this->data['employee'] = $this->Mskillemployee->get_employees();
 
 				if (($this->Mskillemployee->get_skills_for_employee($this->data['ID_employee'])) == False) {
-					return redirect(base_url() . 'Technical_Account/List_skills_employee?ID_employee=' . $this->data['ID_employee']);
+					return redirect(base_url() . 'Employee_Account/List_skills_employee?ID_employee=' . $this->data['ID_employee']);
 				} else {
 					$this->load->view('Employee/EmployeeskillMod/Add_skill_employee.php', $this->data);
 				}
@@ -16607,7 +16633,7 @@ class Employee_Account extends CI_Controller
 					$this->Mskillemployee->add_skill_employee($this->data);
 				}
 			}
-			return redirect(base_url() . 'Technical_Account/List_skills_employee?ID_employee=' . $_POST['ID_employee']);
+			return redirect(base_url() . 'Employee_Account/List_skills_employee?ID_employee=' . $_POST['ID_employee']);
 		} else {
 			$this->load->view('Employee/No_access.php', $this->data);
 		}
@@ -16913,7 +16939,7 @@ class Employee_Account extends CI_Controller
 				$this->data['ID_employee'] = $this->data['employee'][0]['ID_employee'];
 				$this->data['skill_employee'] = $this->Mskillemployee->delete_skill_employee($this->data['ID_skill_employee']);
 			}
-			return redirect(base_url() . 'Technical_Account/List_skills_employee?ID_employee=' . $this->data['ID_employee']);
+			return redirect(base_url() . 'Employee_Account/List_skills_employee?ID_employee=' . $this->data['ID_employee']);
 		} else {
 			$this->load->view('Employee/No_access.php', $this->data);
 		}

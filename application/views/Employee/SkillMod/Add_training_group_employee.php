@@ -68,8 +68,8 @@
                                 <div class="card-box">
                                     <form id="popup" action="<?php echo base_url(); ?>Employee_Account/Submit_add_training_group_employee" enctype="multipart/form-data" method="post">
                                         <div class="row">
-                                            <input type="text" name="ID_skill" value="<?php echo $ID_skill ?>">
-                                            <input type="text" name="ID_skill_employee" value="<?php echo $ID_skill_employee ?>">
+                                            <input type="hidden" name="ID_skill" value="<?php echo $ID_skill ?>">
+                                            <input type="hidden" name="ID_skill_employee" value="<?php echo $ID_skill_employee ?>">
 
                                             <div class="col-md-6">
 
@@ -114,7 +114,7 @@
 
                                         </div>
                                         <div class="text-right">
-                                            <button id="btn_add" type="button" class="btn btn-primary">Confirm</button>
+                                            <button id="btn_add" type="submit" class="btn btn-primary">Confirm</button>
                                         </div>
                                     </form>
 

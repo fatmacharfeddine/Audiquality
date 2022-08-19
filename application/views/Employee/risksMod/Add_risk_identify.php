@@ -60,15 +60,16 @@
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-form-label col-md-3">Enjeu </label>
+                                                
                                                 <div class="col-md-9">
                                                     <select class="form-control" name="ID_enjeu" id="ID_enjeu">
                                                         <?php
-                                                        foreach ($enjeu as $row) {
+                                                        foreach ($enjeuAll as $row) {
 
                                                             if (isset($ID_enjeu)) {
 
                                                                 if ($row['ID_enjeu'] == $ID_enjeu) {
-
+                                                              //  echo    $row['ID_enjeu'] 
                                                         ?>
 
                                                                     <option value=<?= $row['ID_enjeu'] ?> selected><?= $row['Text_enjeu'] ?></option>

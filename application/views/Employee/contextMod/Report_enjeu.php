@@ -23,7 +23,15 @@
 
 
     <div class="page-wrapper" style="min-height: 314px;">
-        <div class="content">
+        <div class="row">
+
+        </div> <br>
+        <div class="col-sm-7 col-8 text-right m-b-30">
+            <div class="btn-group btn-group-sm">
+                <button class="btn btn-white" onclick="printDiv('printMe')"><i class="fa fa-print fa-lg"></i> Print</button>
+            </div>
+        </div>
+        <div class="content" id="printMe">
             <div class="row">
                 <h4 class="payslip-title" style="margin-left: 30%;">Liste des Enjeux </h4>
                 <div class="col-md-12">

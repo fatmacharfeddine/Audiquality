@@ -4697,11 +4697,14 @@ class Employee_Account extends CI_Controller
 
 			if ($_GET) {
 				$this->data['ID_risk'] = $_GET['ID_risk'];
+				// liste de toute les enjeuc nn filtrer
+				$this->data['enjeuAll'] = $this->Mrisk_identification->get_all_enjeuAll();
+				// End liste de toute les enjeuc nn filtrer
 
 				$this->data['enjeu'] = $this->Mrisk_identification->get_all_enjeu($this->data['ID_risk']);
 				$this->data['processus'] = $this->Mrisk_identification->get_all_processus($this->data['ID_risk']);
-
-
+				
+				//echo print_r($this->data['enjeu']);die();
 				//$this->data['ID_risk'] = $_GET['ID_risk'];
 				//$this->data['ID_sector'] = $_GET['ID_sector'];
 				$this->data['ID_identification'] = $_GET['ID_identification'];
@@ -4718,6 +4721,9 @@ class Employee_Account extends CI_Controller
 				$this->data['ID_processus'] = $this->data['risk_identify'][0]['ID_processus'];
 				$this->data['ID_identification_method'] = $this->data['risk_identify'][0]['ID_identification_method'];
 				$this->data['ID_risk'] = $this->data['risk_identify'][0]['ID_risk'];
+				//$this->data['Text_enjeu'] = $this->data['risk_identify'][0]['Text_enjeu'];
+
+
 			}
 			$this->load->view('Employee/risksMod/Add_risk_identify.php', $this->data);
 			/*************************Access Verif************************/
@@ -5102,13 +5108,13 @@ class Employee_Account extends CI_Controller
 				//$this->data['ID_evaluation'] = $_GET['ID_evaluation'];
 				$this->data['gravity'] = $this->Mrisk_evaluation->get_all_gravity();
 				$this->data['probability'] = $this->Mrisk_evaluation->get_all_probability();
-				$this->data['detectability'] = $this->Mrisk_evaluation->get_all_detectability();
+				//$this->data['detectability'] = $this->Mrisk_evaluation->get_all_detectability();
 
 				$this->data['risk_eval'] = $this->Mrisk_evaluation->get_risk_evaluation_by_ID($this->data['ID_identification']);
 				$this->data['ID_evaluation'] = $this->data['risk_eval'][0]['ID_evaluation'];
 				$this->data['Gavity_evaluation'] = $this->data['risk_eval'][0]['Gavity_evaluation'];
 				$this->data['Probability_evaluation'] = $this->data['risk_eval'][0]['Probability_evaluation'];
-				$this->data['Detectability_evaluation'] = $this->data['risk_eval'][0]['Detectability_evaluation'];
+				//$this->data['Detectability_evaluation'] = $this->data['risk_eval'][0]['Detectability_evaluation'];
 				$this->data['Priority_evaluation'] = $this->data['risk_eval'][0]['Priority_evaluation'];
 				$this->data['Criticality_evaluation'] = $this->data['risk_eval'][0]['Criticality_evaluation'];
 				$this->data['consequence_evaluation'] = $this->data['risk_eval'][0]['consequence_evaluation'];
@@ -5190,6 +5196,41 @@ class Employee_Account extends CI_Controller
 			$this->data['effort'] = $this->Mrisk_evaluation->get_all_effort();
 			//	$this->data['detectability'] = $this->Mrisk_evaluation->get_all_detectability();
 
+			//$this->data['type'] = $this->Mdocument->get_type();
+
+			$this->load->view('Employee/risksMod/Add_opportunity_evaluation.php', $this->data);
+			/*************************Access Verif************************/
+		} else {
+			$this->load->view('Employee/No_access.php', $this->data);
+		}
+		$this->load->view('Employee/Footer');
+		/*********************End Access Verif************************/
+	}
+	public function Form_edit_opportunity_evaluation()
+	{
+		$this->commonData();
+		/*************************Access Verif************************/
+		$this->function_type = "edit";
+		$current_function = "List_risk";
+		$this->commonAccess($current_function);
+		$this->load->view('Employee/Header');
+		$this->load->view('Employee/Menu', $this->data);
+
+
+
+
+
+		if ($this->test_verif_edit == 1) {
+			/*********************End Access Verif************************/
+
+			$this->data['ID_risk'] = $_GET['ID_risk'];
+			//$this->data['ID_sector'] = $_GET['ID_sector'];
+			$this->data['ID_identification'] = $_GET['ID_identification'];
+
+			$this->data['avantage'] = $this->Mrisk_evaluation->get_all_avantage();
+			$this->data['effort'] = $this->Mrisk_evaluation->get_all_effort();
+			//	$this->data['detectability'] = $this->Mrisk_evaluation->get_all_detectability();
+
 
 
 			//$this->data['type'] = $this->Mdocument->get_type();
@@ -5202,7 +5243,6 @@ class Employee_Account extends CI_Controller
 		$this->load->view('Employee/Footer');
 		/*********************End Access Verif************************/
 	}
-
 	public function Submit_add_risk_evaluation()
 	{
 
@@ -6238,6 +6278,7 @@ class Employee_Account extends CI_Controller
 			$Taux_risk_objectif1 = 0;
 			$Taux_risk_objectif2 = 0;
 			$Taux_risk_objectif3 = 0;
+			$Taux_risk_objectif4 = 0;
 			if (isset($_POST['Taux_risk_objectif1'])) {
 				$Taux_risk_objectif1 = $_POST['Taux_risk_objectif1'];
 			}
@@ -6246,6 +6287,9 @@ class Employee_Account extends CI_Controller
 			}
 			if (isset($_POST['Taux_risk_objectif3'])) {
 				$Taux_risk_objectif3 = $_POST['Taux_risk_objectif3'];
+			}
+			if (isset($_POST['Taux_risk_objectif4'])) {
+				$Taux_risk_objectif4 = $_POST['Taux_risk_objectif4'];
 			}
 
 
@@ -6260,7 +6304,7 @@ class Employee_Account extends CI_Controller
 				'Taux_risk_objectif1'	=> $Taux_risk_objectif1,
 				'Taux_risk_objectif2'	=> $Taux_risk_objectif2,
 				'Taux_risk_objectif3'	=> $Taux_risk_objectif3,
-
+				'Taux_risk_objectif4' => $Taux_risk_objectif4,
 				'ID_processus'	=> $_POST['ID_processus'],
 
 			);
@@ -6307,6 +6351,8 @@ class Employee_Account extends CI_Controller
 				$this->data['Taux_risk_objectif1'] = $this->data['risk_objectif'][0]['Taux_risk_objectif1'];
 				$this->data['Taux_risk_objectif2'] = $this->data['risk_objectif'][0]['Taux_risk_objectif2'];
 				$this->data['Taux_risk_objectif3'] = $this->data['risk_objectif'][0]['Taux_risk_objectif3'];
+				$this->data['Taux_risk_objectif4'] = $this->data['risk_objectif'][0]['Taux_risk_objectif4'];
+
 				$this->data['Frequence_risk_objectif'] = $this->data['risk_objectif'][0]['Frequence_risk_objectif'];
 			}
 			//echo $this->data['Date_risk_objectif'];die();
@@ -7228,7 +7274,6 @@ class Employee_Account extends CI_Controller
 	}
 	public function List_trainings()
 	{
-
 		$this->commonData();
 		/*************************Access Verif************************/
 		$this->function_type = "edit";
@@ -7236,10 +7281,6 @@ class Employee_Account extends CI_Controller
 		$this->commonAccess($current_function);
 		$this->load->view('Employee/Header');
 		$this->load->view('Employee/Menu', $this->data);
-
-
-
-
 
 		if ($this->test_verif_edit == 1) {
 			/*********************End Access Verif************************/
@@ -8613,8 +8654,8 @@ class Employee_Account extends CI_Controller
 				//echo $_POST['Password_employee'];
 				//die();
 				if (isset($_POST['ID_employee'])) {
-				//	echo $_POST['ID_employee'];
-				//	die();
+					//	echo $_POST['ID_employee'];
+					//	die();
 					$this->data_employee_edit = array(
 						'Name_employee' => $_POST['Name_employee'],
 						'Lastname_employee' => $_POST['Lastname_employee'],
@@ -10837,7 +10878,7 @@ class Employee_Account extends CI_Controller
 				$this->MContexte->delete_Enjeu($_GET['ID_enjeu']);
 				//	$this->MContexte->delete_Corrective_enjeu($_GET['ID_enjeu']);
 			}
-			return redirect(base_url() . 'Employee_Account/View_Enjeu_interne?ID_swot=' . $_POST['ID_swot']);
+			return redirect(base_url() . 'Employee_Account/View_Enjeu_interne?ID_swot=' . $_GET['ID_swot']);
 			/*************************Access Verif************************/
 		} else {
 			$this->load->view('Employee/No_access.php', $this->data);
@@ -10868,7 +10909,7 @@ class Employee_Account extends CI_Controller
 				$this->MContexte->delete_Enjeu($_GET['ID_enjeu']);
 				//	$this->MContexte->delete_Corrective_enjeu($_GET['ID_enjeu']);
 			}
-			return redirect(base_url() . 'Employee_Account/View_Enjeu_externe?ID_swot=' . $_POST['ID_swot']);
+			return redirect(base_url() . 'Employee_Account/View_Enjeu_externe?ID_swot=' . $_GET['ID_swot']);
 			/*************************Access Verif************************/
 		} else {
 			$this->load->view('Employee/No_access.php', $this->data);
@@ -13263,7 +13304,7 @@ class Employee_Account extends CI_Controller
 		/*********************End Access Verif************************/
 	}
 
-	
+
 	public function Form_add_followup()
 	{
 		$this->commonData();

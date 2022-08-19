@@ -23,14 +23,14 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card-box">
-                                    <form id="popup" action="<?php echo base_url(); ?>Employee_Account/Submit_add_opportunity_evaluation/" enctype="multipart/form-data" method="post">
+                                    <form id="popup" action="<?php echo base_url(); ?>Employee_Account/Submit_add_opportunity_evaluation" enctype="multipart/form-data" method="post">
                                         <div class="row">
                                             <div class="col-md-5">
                                                 <!--input type="hidden" name="ID_sector" value="<?php echo $ID_sector ?>"-->
 
                                                 <?php if (isset($ID_evaluation)) {
                                                 ?>
-                                                    <input type="hidden" name="ID_evaluation" value="<?php echo $ID_evaluation ?>">
+                                                    <input type="text" name="ID_evaluation" value="<?php echo $ID_evaluation ?>">
                                                 <?php } ?>
 
                                                 <input type="hidden" name="ID_risk" value="<?php echo $ID_risk ?>">

@@ -19,13 +19,7 @@
                                         <a class="avatar" href="">
                                             <img alt="" src="<?php echo base_url() ?>/includes/ext/assets/template/img/RH/post.jpg"></a>
                                     </div>
-                                    <div class="dropdown profile-action">
-                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href=""><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                            <a class="dropdown-item" href=""><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                        </div>
-                                    </div>
+                                   
                                     </a>
                                     <h4 class="doctor-name text-ellipsis">
                                     <?= $row['Name_post'] ?>

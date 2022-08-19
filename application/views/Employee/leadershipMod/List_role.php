@@ -5,8 +5,8 @@
         <div class="content">
             <div class="row">
 
-
-                <div class="col-sm-6 col-md-6 col-lg-4">
+                <div class="col-md-2"></div>
+                <div class="col-md-4">
                     <div class="blog grid-blog">
                         <div class="blog-image">
                             <a href="<?php echo base_url() ?>/Employee_Account/Form_add_organigramme">
@@ -32,7 +32,7 @@
                         </div>
                     </div>
                 </div-->
-                <div class="col-sm-6 col-md-6 col-lg-4">
+                <div class="col-md-4">
                     <div class="blog grid-blog">
                         <div class="blog-image">
                             <a href="<?php echo base_url() ?>/Employee_Account/List_fiche"><img class="img-fluid" src="<?php echo base_url() ?>includes/ext/assets/template/img/role/fiche.png" alt=""></a>
@@ -44,6 +44,7 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-2"></div>
 
             </div>
 

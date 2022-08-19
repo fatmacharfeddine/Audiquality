@@ -96,9 +96,10 @@
                                                             <?php } ?>
                                                             <div class="form-group">
                                                                 <label>Nom domaine</label>
-                                                                <input class="form-control" type="text" name="name_domain" value="<?php if (isset($ID_domain)) {
-                                                                                                                                        echo $name_domain;
-                                                                                                                                    } ?>">
+                                                                <textarea id="w3review" class="form-control" name="name_domain" rows="4" cols="50">
+                                                                <?php if (isset($ID_domain)) {
+                                                                    echo $name_domain;
+                                                                } ?></textarea>
                                                             </div>
                                                             <input class="form-control" type="hidden" name="ID_company" value="<?php if (isset($ID_domain)) {
                                                                                                                                     echo $ID_company;
@@ -110,7 +111,7 @@
                                                                     <img src="<?= base_url() ?>/includes/ext/assets/template/img/file.png" name="profileDisplay" id="profileDisplay" onclick="triggerClick()" alt="" style="  text-align:center;  width: 50px; height: 50px;border: 2px solid #d1cfcf;padding: 2px;">
 
                                                                     <img id="target" />
-                                                                    <input type="file" accept="image/jpg, image/jpeg, image/png" id="file_domain" name="file_domain" onchange="displayImage(this)" style="display:none;  text-align:center;  width: 50px; height: 50px;border: 2px solid #d1cfcf;padding: 2px;"> </input>
+                                                                    <input type="file" accept="image/jpg, image/jpeg, image/png,.pdf,.doc,.docx" id="file_domain" name="file_domain" onchange="displayImage(this)" style="display:none;  text-align:center;  width: 50px; height: 50px;border: 2px solid #d1cfcf;padding: 2px;"> </input>
 
                                                                 </div>
                                                             </div>

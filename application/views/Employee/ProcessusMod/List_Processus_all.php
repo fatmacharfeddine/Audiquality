@@ -77,7 +77,7 @@
 
                                             <?php foreach ($management as $row1) { ?>
                                                 <div class="col-sm-4 manag">
-                                                    <?php echo $row1['Title_processus']; ?>
+                                                    <a href="<?php echo base_url(); ?>Employee_Account/View_Processus?ID_processus=<?php echo $row1['ID_processus']; ?>" style="color: white;"> <?php echo $row1['Title_processus']; ?></a>
                                                 </div>
 
                                             <?php } ?>
@@ -100,7 +100,7 @@
 
                                                     <?php foreach ($realisation as $row1) { ?>
                                                         <div class="col-sm-12 real">
-                                                            <?php echo $row1['Title_processus']; ?>
+                                                            <a href="<?php echo base_url(); ?>Employee_Account/View_Processus?ID_processus=<?php echo $row1['ID_processus']; ?>" style="color: white;"> <?php echo $row1['Title_processus']; ?></a>
                                                         </div>
 
                                                     <?php } ?>
@@ -124,7 +124,7 @@
 
                                             <?php foreach ($support as $row1) { ?>
                                                 <div class="col-sm-4 manag">
-                                                    <?php echo $row1['Title_processus']; ?>
+                                                    <a href="<?php echo base_url(); ?>Employee_Account/View_Processus?ID_processus=<?php echo $row1['ID_processus']; ?>" style="color: white;"> <?php echo $row1['Title_processus']; ?></a>
                                                 </div>
 
                                             <?php } ?>

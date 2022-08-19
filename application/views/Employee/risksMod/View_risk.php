@@ -96,7 +96,7 @@
                                     <tr role="row">
                                         <th colspan="1" class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 142px;"></th>
                                         <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 5px;">Description Enjeu</th>
-                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 5px;">Recommendation</th>
+                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 5px;">Type Enjeu</th>
                                         <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 5px;">Description Risk</th>
                                         <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 5px;"></th>
                                     </tr>
@@ -120,7 +120,34 @@
                                                     <?php echo $row['Description_enjeu'] ?>
                                                 </td>
                                                 <td class="sorting_1">
-                                                    <?php echo $row['Corrective_enjeu'] ?>
+                                                    <?php
+                                                    if ($row['ID_swot'] == 1) {
+                                                    ?>
+                                                        <p style="color:green"> Force </p>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                    <?php
+                                                    if ($row['ID_swot'] == 2) {
+                                                    ?>
+                                                        <p style="color:red"> Faiblesse </p>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                    <?php
+                                                    if ($row['ID_swot'] == 3) {
+                                                    ?>
+                                                        <p style="color:red"> Menace </p>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                    <?php
+                                                    if ($row['ID_swot'] == 4) {
+                                                    ?>
+                                                        <p style="color:green"> Opportunité </p>
+                                                    <?php
+                                                    }
+                                                    ?>
                                                 </td>
                                                 <td class="sorting_1">
                                                     <?php echo $row['Description_identification'] ?>
@@ -199,9 +226,38 @@
                                             <tr role="row" class="odd">
 
 
+                                                <?php
+                                                if ($row['ID_swot'] == 1) {
+                                                ?>
+                                                    <td class="sorting_1" style="color:green"><?php echo $row['Code_identification'] . ' : ' . $row['Text_enjeu'] ?> </td>
 
-                                                <td class="sorting_1"><?php echo $row['Code_identification'] . ' : ' . $row['Text_enjeu'] ?> </td>
+                                                <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($row['ID_swot'] == 2) {
+                                                ?>
+                                                    <td class="sorting_1" style="color:red"><?php echo $row['Code_identification'] . ' : ' . $row['Text_enjeu'] ?> </td>
 
+                                                <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($row['ID_swot'] == 3) {
+                                                ?>
+                                                    <td class="sorting_1" style="color:red"><?php echo $row['Code_identification'] . ' : ' . $row['Text_enjeu'] ?> </td>
+
+                                                <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($row['ID_swot'] == 4) {
+                                                ?>
+                                                    <td class="sorting_1" style="color:green"><?php echo $row['Code_identification'] . ' : ' . $row['Text_enjeu'] ?> </td>
+
+                                                <?php
+                                                }
+                                                ?>
 
 
 
@@ -257,8 +313,18 @@
                                                                     <div class="dropdown dropdown-action">
                                                                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                                                                         <div class="dropdown-menu dropdown-menu-right">
-                                                                            <a class="dropdown-item" href="<?php echo base_url(); ?>Employee_Account/Form_edit_risk_evaluation?ID_identification=<?php echo $row['ID_identification'] ?>&ID_risk=<?php echo $ID_risk ?>"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                                                            <a class="dropdown-item" href="<?php echo base_url(); ?>Employee_Account/Delete_risk_evaluation?ID_identification=<?php echo $row['ID_identification'] ?>&ID_risk=<?php echo $ID_risk ?>"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                                                            <?php if ($row['ID_swot'] == 2 || $row['ID_swot'] == 3) { ?>
+
+                                                                                <a class="dropdown-item" href="<?php echo base_url(); ?>Employee_Account/Form_edit_risk_evaluation?ID_identification=<?php echo $row['ID_identification'] ?>&ID_risk=<?php echo $ID_risk ?>"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                                                            <?php } else if ($row['ID_swot'] == 1 || $row['ID_swot'] == 4) {
+
+                                                                          
+                                                                            ?>
+                                                                                <a class="dropdown-item" href="<?php echo base_url(); ?>Employee_Account/Form_edit_opportunity_evaluation?ID_identification=<?php echo $row['ID_identification'] ?>&ID_risk=<?php echo $ID_risk ?>"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+
+
+                                                                            <?php
+                                                                            } ?> <a class="dropdown-item" href="<?php echo base_url(); ?>Employee_Account/Delete_risk_evaluation?ID_identification=<?php echo $row['ID_identification'] ?>&ID_risk=<?php echo $ID_risk ?>"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                                                                         </div>
                                                                     </div>
                                                                 </td>
@@ -336,8 +402,38 @@
                                             <tr role="row" class="odd">
 
 
+                                                <?php
+                                                if ($row['ID_swot'] == 1) {
+                                                ?>
+                                                    <td class="sorting_1" style="color:green"><?php echo $row['Code_identification'] . ' : ' . $row['Text_enjeu'] ?> </td>
 
-                                                <td class="sorting_1"><?php echo $row['Code_identification'] . ' : ' . $row['Text_enjeu'] ?> </td>
+                                                <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($row['ID_swot'] == 2) {
+                                                ?>
+                                                    <td class="sorting_1" style="color:red"><?php echo $row['Code_identification'] . ' : ' . $row['Text_enjeu'] ?> </td>
+
+                                                <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($row['ID_swot'] == 3) {
+                                                ?>
+                                                    <td class="sorting_1" style="color:red"><?php echo $row['Code_identification'] . ' : ' . $row['Text_enjeu'] ?> </td>
+
+                                                <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($row['ID_swot'] == 4) {
+                                                ?>
+                                                    <td class="sorting_1" style="color:green"><?php echo $row['Code_identification'] . ' : ' . $row['Text_enjeu'] ?> </td>
+
+                                                <?php
+                                                }
+                                                ?>
 
 
 

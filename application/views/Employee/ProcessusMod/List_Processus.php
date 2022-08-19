@@ -20,7 +20,7 @@
                         <div class="col-md-4 col-sm-4  col-lg-3">
                             <div class="profile-widget">
                                 <div class="doctor-img">
-                                    <a class="avatar" href="<?php echo base_url(); ?>/Employee_Account/Form_edit_processus/?ID_processus=<?php echo $row['ID_processus']; ?>">
+                                    <a class="avatar" href="<?php echo base_url(); ?>Employee_Account/View_Processus?ID_processus=<?php echo $row['ID_processus']; ?>">
                                         <img alt="" src="<?php echo base_url() ?>/uploads/process/<?php echo $row['Photo_processus'] ?>"></a>
                                 </div>
                                 <div class="dropdown profile-action">

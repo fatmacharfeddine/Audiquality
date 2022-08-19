@@ -130,6 +130,19 @@ class Mrisk_identification extends CI_Model
             return $query->result_array();
         }
     }
+    function get_all_enjeuAll()
+    {
+        $this->db->select('*');
+        $this->db->from('auditquality_enjeu');
+        //$this->db->where('auditquality_enjeu.ID_enjeu not in (select (ID_enjeu) from auditquality_identification where ID_risk =' . $ID_risk . ')');
+
+        $query = $this->db->get();
+        if ($query->num_rows() == 0) {
+            return False;
+        } else {
+            return $query->result_array();
+        }
+    }
     function get_all_processus($ID_risk)
     {
         $this->db->select('*');

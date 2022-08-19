@@ -90,7 +90,7 @@
                                                     </div>
                                                 </div>
 
-                                             
+
                                                 <?php
 
                                                 $select1 = "";
@@ -98,7 +98,7 @@
                                                 $select3 = "";
 
                                                 if (isset($Frequence_risk_objectif)) {
-                                                  //  echo $Frequence_risk_objectif ; 
+                                                    //  echo $Frequence_risk_objectif ; 
 
                                                     if ($Frequence_risk_objectif == 1) {
                                                         $select1 = "checked";
@@ -122,7 +122,7 @@
                                                         </div>
                                                         <div class="radio" name="Frequence_risk_objectif">
                                                             <label>
-                                                                <input type="radio" name="Frequence_risk_objectif" id="sem" value="2" <?php echo $select2 ?> > semestriel
+                                                                <input type="radio" name="Frequence_risk_objectif" id="sem" value="2" <?php echo $select2 ?>> semestriel
                                                             </label>
                                                         </div>
                                                         <div class="radio" name="Frequence_risk_objectif">
@@ -140,7 +140,7 @@
                                                     <div class="col-md-9">
 
 
-                                                        <input type="text" name="Taux_risk_objectif1" id="Taux_risk_objectif1" value="<?php if (isset($Taux_risk_objectif1)) {
+                                                        <input type="number" name="Taux_risk_objectif1" id="Taux_risk_objectif1" value="<?php if (isset($Taux_risk_objectif1)) {
                                                                                                                                             echo $Taux_risk_objectif1;
                                                                                                                                         } ?>" placeholder="Valeur 1 " class="form-control">
 
@@ -154,7 +154,7 @@
                                                     <div class="col-md-9">
 
 
-                                                        <input type="text" name="Taux_risk_objectif2" id="Taux_risk_objectif2" value="<?php if (isset($Taux_risk_objectif2)) {
+                                                        <input type="number" name="Taux_risk_objectif2" id="Taux_risk_objectif2" value="<?php if (isset($Taux_risk_objectif2)) {
                                                                                                                                             echo $Taux_risk_objectif2;
                                                                                                                                         } ?>" placeholder="Valeur 2 " class="form-control">
 
@@ -167,7 +167,7 @@
                                                     <div class="col-md-9">
 
 
-                                                        <input type="text" name="Taux_risk_objectif3" id="Taux_risk_objectif3" value="<?php if (isset($Taux_risk_objectif3)) {
+                                                        <input type="number" name="Taux_risk_objectif3" id="Taux_risk_objectif3" value="<?php if (isset($Taux_risk_objectif3)) {
                                                                                                                                             echo $Taux_risk_objectif3;
                                                                                                                                         } ?>" placeholder="Valeur 3 " class="form-control">
 
@@ -175,6 +175,19 @@
                                                     </div>
                                                 </div>
 
+
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-md-3">Valeur 4 </label>
+                                                    <div class="col-md-9">
+
+
+                                                        <input type="number" name="Taux_risk_objectif4" id="Taux_risk_objectif4" value="<?php if (isset($Taux_risk_objectif4)) {
+                                                                                                                                            echo $Taux_risk_objectif4;
+                                                                                                                                        } ?>" placeholder="Valeur 4 " class="form-control">
+
+
+                                                    </div>
+                                                </div>
                                             </div>
 
                                         </div>
@@ -258,15 +271,20 @@
             if ($("#sem").is(":checked")) {
                 $('#Taux_risk_objectif2').prop('disabled', false);
                 $('#Taux_risk_objectif3').prop('disabled', true);
+                $('#Taux_risk_objectif4').prop('disabled', true);
 
             } else
             if ($("#ann").is(":checked")) {
                 $('#Taux_risk_objectif2').prop('disabled', true);
                 $('#Taux_risk_objectif3').prop('disabled', true);
+                $('#Taux_risk_objectif4').prop('disabled', true);
+
 
             } else {
                 $('#Taux_risk_objectif2').prop('disabled', false);
                 $('#Taux_risk_objectif3').prop('disabled', false);
+                $('#Taux_risk_objectif4').prop('disabled', false);
+
             }
         };
         $(update_tri);
